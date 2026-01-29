@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-display bg-[#feeae1] text-[#215c9e] transition-colors duration-300 overflow-x-hidden;
+    font-family: 'Manrope', sans-serif;
+  }
+}
+
+@layer components {
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+}
+
+:root {
+  --primary-color: #215c9e;
+  --accent-color: #f5683d;
+  --secondary-color: #dcb0cb;
+  --bg-cream: #feeae1;
+}
