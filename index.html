@@ -10,6 +10,7 @@
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap"
         rel="stylesheet" />
+    <link rel="icon" type="image/png" href="Imagenes/Vetty - Logo - fondo azul.png" />
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -61,13 +62,13 @@
     <!-- End Google Tag Manager -->
 </head>
 
-<body class="bg-[var(--bg-cream)] text-navy transition-colors duration-300">
+<body class="bg-[var(--bg-cream)] text-navy transition-colors duration-300 overflow-x-hidden">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PTT324TH" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <!-- Header removed for full-bleed hero -->
-    <main>
+    <main class="overflow-x-hidden w-full">
         <section id="hero-section" class="relative min-h-[650px] flex items-center bg-gray-900 overflow-hidden">
             <div class="absolute inset-0 w-full h-full overflow-hidden">
                 <!-- Background Image -->
@@ -107,14 +108,14 @@
                             <span class="font-semibold text-white">Sin citas previas, atención inmediata</span>
                         </li>
                     </ul>
-                    <div class="py-4">
+                    <div class="py-4 hidden lg:block">
                         <img src="Imagenes/Vetty - Logo - fondo azul.png" alt="Vetty"
                             class="size-24 rounded-full object-cover border-4 border-white/50 shadow-xl bg-white">
                     </div>
                 </div>
-                <div class="flex items-center justify-center lg:justify-end">
+                <div class="flex items-center justify-center lg:justify-end w-full">
                     <div
-                        class="bg-white p-8 md:p-10 rounded-2xl shadow-2xl border border-white/20 w-full max-w-md backdrop-blur-sm">
+                        class="bg-white p-6 md:p-10 rounded-2xl shadow-2xl border border-white/20 w-full max-w-md backdrop-blur-sm mx-auto lg:mx-0">
                         <h3 id="formTitle" class="text-2xl font-bold mb-2 text-navy">¿Quieres conocer cómo funciona
                             nuestro servicio?
                         </h3>
@@ -136,20 +137,24 @@
                                     class="block text-xs font-bold uppercase tracking-wider text-navy/50 mb-1">Teléfono
                                     <span class="text-red-500">*</span></label>
                                 <div class="flex gap-2">
-                                    <select id="phonePrefix"
-                                        class="w-32 bg-[var(--bg-cream)]/30 border border-[var(--secondary-color)]/30 rounded-lg h-12 px-3 focus:ring-2 focus:ring-accent/50 outline-none text-base font-medium appearance-none transition-all">
-                                        <option value="+57">🇨🇴 +57</option>
-                                        <option value="+52">🇲🇽 +52</option>
-                                        <option value="+54">🇦🇷 +54</option>
-                                        <option value="+56">🇨🇱 +56</option>
-                                        <option value="+51">🇵🇪 +51</option>
-                                        <option value="+58">🇻🇪 +58</option>
-                                        <option value="+1">🇺🇸 +1</option>
-                                        <option value="+34">🇪🇸 +34</option>
-                                        <option value="+507">🇵🇦 +507</option>
-                                    </select>
+                                    <div class="relative w-[110px] shrink-0">
+                                        <select id="phonePrefix"
+                                            class="w-full bg-[var(--bg-cream)]/30 border border-[var(--secondary-color)]/30 rounded-lg h-12 pl-3 pr-8 focus:ring-2 focus:ring-accent/50 outline-none text-base font-medium appearance-none transition-all">
+                                            <option value="+57">🇨🇴 +57</option>
+                                            <option value="+52">🇲🇽 +52</option>
+                                            <option value="+54">🇦🇷 +54</option>
+                                            <option value="+56">🇨🇱 +56</option>
+                                            <option value="+51">🇵🇪 +51</option>
+                                            <option value="+58">🇻🇪 +58</option>
+                                            <option value="+1">🇺🇸 +1</option>
+                                            <option value="+34">🇪🇸 +34</option>
+                                            <option value="+507">🇵🇦 +507</option>
+                                        </select>
+                                        <span
+                                            class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-navy/40 text-sm">expand_more</span>
+                                    </div>
                                     <input required
-                                        class="flex-1 bg-[var(--bg-cream)]/30 border border-[var(--secondary-color)]/30 rounded-lg h-12 px-4 focus:ring-2 focus:ring-accent/50 outline-none text-base font-medium transition-all"
+                                        class="flex-1 bg-[var(--bg-cream)]/30 border border-[var(--secondary-color)]/30 rounded-lg h-12 px-4 focus:ring-2 focus:ring-accent/50 outline-none text-base font-medium transition-all min-w-0"
                                         placeholder="300 123 4567" type="tel" name="phone" />
                                 </div>
                                 <p class="hidden text-xs text-red-500 mt-1" id="phoneError">Número inválido</p>
@@ -159,34 +164,45 @@
                                     <span class="text-red-500">*</span></label>
                                 <input required
                                     class="w-full bg-[var(--bg-cream)]/30 border border-[var(--secondary-color)]/30 rounded-lg h-12 px-4 focus:ring-2 focus:ring-accent/50 outline-none text-base font-medium transition-all"
-                                    placeholder="ejemplo@..." type="email" name="email" />
+                                    placeholder="ejemplo@..." type="email" name="email" id="emailInput" />
+                                <p class="hidden text-xs text-red-500 mt-1" id="emailError">Correo electrónico inválido
+                                </p>
                             </div>
 
                             <div>
                                 <label class="block text-xs font-bold uppercase tracking-wider text-navy/50 mb-1">Tipo
-                                    de Mascota</label>
-                                <select
-                                    class="w-full bg-[var(--bg-cream)]/30 border border-[var(--secondary-color)]/30 rounded-lg h-12 px-4 focus:ring-2 focus:ring-accent/50 outline-none text-base font-medium appearance-none transition-all">
-                                    <option value="" disabled selected>Selecciona tipo</option>
-                                    <option value="perro">Perro</option>
-                                    <option value="gato">Gato</option>
-                                    <option value="canario">Canario</option>
-                                    <option value="caballo">Caballo</option>
-                                    <option value="vaca">Vaca</option>
-                                    <option value="otro">Otro</option>
-                                </select>
+                                    de Mascota <span class="text-red-500">*</span></label>
+                                <div class="relative">
+                                    <select required id="petTypeSelect"
+                                        class="w-full bg-[var(--bg-cream)]/30 border border-[var(--secondary-color)]/30 rounded-lg h-12 pl-4 pr-10 focus:ring-2 focus:ring-accent/50 outline-none text-base font-medium appearance-none transition-all">
+                                        <option value="" disabled selected>Selecciona tipo</option>
+                                        <option value="perro">Perro</option>
+                                        <option value="gato">Gato</option>
+                                        <option value="canario">Canario</option>
+                                        <option value="caballo">Caballo</option>
+                                        <option value="vaca">Vaca</option>
+                                        <option value="otro">Otro</option>
+                                    </select>
+                                    <span
+                                        class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-navy/40">expand_more</span>
+                                </div>
                             </div>
 
                             <div>
                                 <label class="block text-xs font-bold uppercase tracking-wider text-navy/50 mb-1">Tipo
-                                    de Necesidad</label>
-                                <select
-                                    class="w-full bg-[var(--bg-cream)]/30 border border-[var(--secondary-color)]/30 rounded-lg h-12 px-4 focus:ring-2 focus:ring-accent/50 outline-none text-base font-medium appearance-none transition-all">
-                                    <option value="conocer_servicio">Conocer el servicio</option>
-                                    <option value="precios">Información de precios</option>
-                                    <option value="como_funciona">Cómo funciona la plataforma</option>
-                                    <option value="otra">Otra consulta</option>
-                                </select>
+                                    de Necesidad <span class="text-red-500">*</span></label>
+                                <div class="relative">
+                                    <select required id="needTypeSelect"
+                                        class="w-full bg-[var(--bg-cream)]/30 border border-[var(--secondary-color)]/30 rounded-lg h-12 pl-4 pr-10 focus:ring-2 focus:ring-accent/50 outline-none text-base font-medium appearance-none transition-all">
+                                        <option value="" disabled selected>Seleccionar necesidad</option>
+                                        <option value="conocer_servicio">Conocer el servicio</option>
+                                        <option value="precios">Información de precios</option>
+                                        <option value="como_funciona">Cómo funciona la plataforma</option>
+                                        <option value="otra">Otra consulta</option>
+                                    </select>
+                                    <span
+                                        class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-navy/40">expand_more</span>
+                                </div>
                             </div>
 
                             <div class="flex items-start gap-3 py-2">
@@ -545,27 +561,64 @@
     </footer>
 
     <script>
+        // UTM Capture Logic
+        function getUTMs() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                source: params.get('utm_source') || '',
+                medium: params.get('utm_medium') || '',
+                campaign: params.get('utm_campaign') || '',
+                content: params.get('utm_content') || '',
+                term: params.get('utm_term') || '',
+                full_url: window.location.href
+            };
+        }
+
         // Form Validation
         const form = document.getElementById('consultationForm');
         const phoneInput = form.querySelector('input[name="phone"]');
         const phoneError = document.getElementById('phoneError');
+        const emailInput = document.getElementById('emailInput');
+        const emailError = document.getElementById('emailError');
 
         form.addEventListener('submit', async function (e) {
             e.preventDefault();
 
             let isValid = true;
 
-            // Phone Validation (Simple Regex for demo)
-            const phoneClean = phoneInput.value.replace(/\s/g, '');
+            // Cleanup previous errors
+            form.querySelectorAll('input, select').forEach(el => el.classList.remove('border-red-500'));
+            [phoneError, emailError].forEach(el => el.classList.add('hidden'));
 
+            // Phone Validation
+            const phoneClean = phoneInput.value.replace(/\s/g, '');
             if (phoneClean.length < 7) {
-                // Very basic length check
                 phoneError.classList.remove('hidden');
                 phoneInput.classList.add('border-red-500');
                 isValid = false;
-            } else {
-                phoneError.classList.add('hidden');
-                phoneInput.classList.remove('border-red-500');
+            }
+
+            // Email Validation (Regex)
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(emailInput.value)) {
+                emailError.classList.remove('hidden');
+                emailInput.classList.add('border-red-500');
+                isValid = false;
+            }
+
+            // Checkbox Validation (Reinforcement)
+            if (!document.getElementById('terms').checked) {
+                isValid = false;
+                alert('Debes aceptar los Términos y Condiciones para continuar.');
+            }
+
+            // Selects Validation (HTML required handles this, but JS reinforcement)
+            const petType = document.getElementById('petTypeSelect').value;
+            const needType = document.getElementById('needTypeSelect').value;
+            if (!petType || !needType) {
+                isValid = false;
+                if (!petType) document.getElementById('petTypeSelect').classList.add('border-red-500');
+                if (!needType) document.getElementById('needTypeSelect').classList.add('border-red-500');
             }
 
             if (isValid) {
@@ -574,10 +627,11 @@
                 const formData = {
                     fullName: form.querySelector('input[name="fullName"]').value,
                     phone: `${prefix} ${phoneClean}`,
-                    email: form.querySelector('input[name="email"]').value,
-                    petType: form.querySelectorAll('select')[1]?.value || '',
-                    needType: form.querySelectorAll('select')[2]?.value || '',
-                    termsAccepted: document.getElementById('terms').checked,
+                    email: emailInput.value,
+                    petType: petType,
+                    needType: needType,
+                    termsAccepted: true,
+                    utms: getUTMs(),
                     timestamp: new Date().toISOString(),
                     source: 'Vetty Landing Page'
                 };
