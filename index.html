@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Vetty - Consultas Veterinarias 24/7</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,FILL@0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#215c9e",
+                        "accent": "#f5683d",
+                        "secondary": "#dcb0cb",
+                        "background-light": "#feeae1",
+                        "navy": "#215c9e"
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        :root {
+            --primary-color: #215c9e;
+            --accent-color: #f5683d;
+            --secondary-color: #dcb0cb;
+            --bg-cream: #feeae1;
+        }
+    </style>
+</head>
+
+<body class="bg-[var(--bg-cream)] text-navy transition-colors duration-300">
+    <header class="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-[var(--secondary-color)]/30">
+        <div class="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <img src="Imagenes/Vetty - Logo - fondo azul.png" alt="Vetty"
+                    class="h-10 md:h-12 w-auto object-contain">
+            </div>
+            <nav class="hidden md:flex items-center gap-10">
+                <!-- Menu removed as requested -->
+            </nav>
+            <div class="flex items-center gap-4">
+                <!-- Buttons removed as requested -->
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="relative min-h-[650px] flex items-center bg-[var(--bg-cream)] overflow-hidden">
+            <div class="absolute inset-0 w-full h-full overflow-hidden">
+                <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover">
+                    <!-- Happy dog in consultation stock video -->
+                    <source src="https://videos.pexels.com/video-files/3196238/3196238-uhd_2560_1440_25fps.mp4"
+                        type="video/mp4">
+                </video>
+                <!-- Overlay removed -->
+            </div>
+            <div class="max-w-[1200px] mx-auto px-6 grid lg:grid-cols-2 gap-12 py-16 relative z-10 w-full">
+                <div class="flex flex-col justify-center space-y-8">
+                    <div class="space-y-4">
+                        <span class="text-accent font-bold tracking-widest uppercase text-xs">Cuidado experto en
+                            casa</span>
+                        <h1 class="text-navy text-5xl md:text-6xl font-black leading-[1.1] tracking-tight">
+                            Consultas 24/7 por solo <span class="text-accent">$9.950</span>
+                        </h1>
+                        <p class="text-lg text-navy/80 max-w-lg leading-relaxed">
+                            Atención veterinaria inmediata a través de WhatsApp. Habla con expertos sin salir de casa,
+                            cualquier día a cualquier hora.
+                        </p>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-accent font-bold">check_circle</span>
+                            <span class="font-semibold text-navy">Consultas de 24 horas de duración</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-accent font-bold">check_circle</span>
+                            <span class="font-semibold text-navy">Disponible 24/7 vía WhatsApp</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-accent font-bold">check_circle</span>
+                            <span class="font-semibold text-navy">Sin citas previas, atención inmediata</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="flex items-center justify-center lg:justify-end">
+                    <div
+                        class="bg-white p-8 md:p-10 rounded-2xl shadow-[0_20px_50px_rgba(33,92,158,0.1)] border border-[var(--secondary-color)]/20 w-full max-w-md">
+                        <h3 class="text-2xl font-bold mb-2 text-navy">¿Quieres conocer cómo funciona nuestro servicio?
+                        </h3>
+                        <p class="text-navy/60 mb-6 text-sm">Déjanos tus datos y te explicaremos todo lo que necesitas
+                            saber.</p>
+
+                        <form class="space-y-4" id="consultationForm">
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-navy/50 mb-1">Nombre
+                                    Completo <span class="text-red-500">*</span></label>
+                                <input required
+                                    class="w-full bg-[var(--bg-cream)]/30 border border-[var(--secondary-color)]/30 rounded-lg h-12 px-4 focus:ring-2 focus:ring-accent/50 outline-none text-base font-medium transition-all"
+                                    placeholder="Juan Pérez" type="text" name="fullName" />
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-wider text-navy/50 mb-1">Teléfono
+                                        <span class="text-red-500">*</span></label>
+                                    <input required
+                                        class="w-full bg-[var(--bg-cream)]/30 border border-[var(--secondary-color)]/30 rounded-lg h-12 px-4 focus:ring-2 focus:ring-accent/50 outline-none text-base font-medium transition-all"
+                                        placeholder="+57 300..." type="tel" name="phone" />
+                                    <p class="hidden text-xs text-red-500 mt-1" id="phoneError">Número inválido</p>
+                                </div>
+                                <div>
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-wider text-navy/50 mb-1">Email
+                                        <span class="text-red-500">*</span></label>
+                                    <input required
+                                        class="w-full bg-[var(--bg-cream)]/30 border border-[var(--secondary-color)]/30 rounded-lg h-12 px-4 focus:ring-2 focus:ring-accent/50 outline-none text-base font-medium transition-all"
+                                        placeholder="ejemplo@..." type="email" name="email" />
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-wider text-navy/50 mb-1">País
+                                        <span class="text-red-500">*</span></label>
+                                    <select required id="countrySelect"
+                                        class="w-full bg-[var(--bg-cream)]/30 border border-[var(--secondary-color)]/30 rounded-lg h-12 px-4 focus:ring-2 focus:ring-accent/50 outline-none text-base font-medium appearance-none transition-all">
+                                        <option value="" disabled selected>Seleccionar</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-wider text-navy/50 mb-1">Ciudad
+                                        <span class="text-red-500">*</span></label>
+                                    <select required id="citySelect" disabled
+                                        class="w-full bg-[var(--bg-cream)]/30 border border-[var(--secondary-color)]/30 rounded-lg h-12 px-4 focus:ring-2 focus:ring-accent/50 outline-none text-base font-medium appearance-none transition-all disabled:opacity-50">
+                                        <option value="" disabled selected>Seleccione País</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-navy/50 mb-1">Tipo
+                                    de Mascota</label>
+                                <select
+                                    class="w-full bg-[var(--bg-cream)]/30 border border-[var(--secondary-color)]/30 rounded-lg h-12 px-4 focus:ring-2 focus:ring-accent/50 outline-none text-base font-medium appearance-none transition-all">
+                                    <option value="" disabled selected>Selecciona tipo</option>
+                                    <option value="perro">Perro</option>
+                                    <option value="gato">Gato</option>
+                                    <option value="canario">Canario</option>
+                                    <option value="caballo">Caballo</option>
+                                    <option value="vaca">Vaca</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-navy/50 mb-1">Tipo
+                                    de Necesidad</label>
+                                <select
+                                    class="w-full bg-[var(--bg-cream)]/30 border border-[var(--secondary-color)]/30 rounded-lg h-12 px-4 focus:ring-2 focus:ring-accent/50 outline-none text-base font-medium appearance-none transition-all">
+                                    <option value="conocer_servicio">Conocer el servicio</option>
+                                    <option value="precios">Información de precios</option>
+                                    <option value="como_funciona">Cómo funciona la plataforma</option>
+                                    <option value="otra">Otra consulta</option>
+                                </select>
+                            </div>
+
+                            <button
+                                class="w-full bg-accent hover:bg-accent/90 text-white font-bold h-14 rounded-lg shadow-lg shadow-accent/20 transition-all flex items-center justify-center gap-2 group"
+                                type="submit">
+                                Solicitar información
+                                <span
+                                    class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                            </button>
+                        </form>
+
+                        <p class="mt-4 text-center text-[11px] text-navy/40 uppercase tracking-widest">Atención segura y
+                            encriptada</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="bg-white py-12 border-y border-[var(--secondary-color)]/20">
+            <div class="max-w-[1200px] mx-auto px-6">
+                <!-- Stats Banner Updated -->
+                <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 text-center">
+                    <div class="space-y-1">
+                        <p class="text-3xl font-black text-navy">+5.000</p>
+                        <p class="text-sm font-bold text-navy/60 uppercase tracking-wide">Consultas Resueltas</p>
+                    </div>
+                    <div class="hidden md:block w-px h-12 bg-navy/10"></div>
+                    <div class="space-y-1">
+                        <p class="text-3xl font-black text-navy">+10</p>
+                        <p class="text-sm font-bold text-navy/60 uppercase tracking-wide">Especialistas Trabajando</p>
+                    </div>
+                    <div class="hidden md:block w-px h-12 bg-navy/10"></div>
+                    <div class="space-y-1">
+                        <p class="text-3xl font-black text-navy">+800</p>
+                        <p class="text-sm font-bold text-navy/60 uppercase tracking-wide">Usuarios Satisfechos</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Vet Team Section -->
+        <section class="py-20 bg-[var(--bg-cream)]/50">
+            <div class="max-w-[1200px] mx-auto px-6">
+                <h2 class="text-3xl font-black text-navy text-center mb-12">Nuestros Especialistas</h2>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <!-- Vet 1 -->
+                    <div
+                        class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all text-center group border border-transparent hover:border-accent/10">
+                        <div
+                            class="w-40 h-40 mx-auto rounded-[20px] overflow-hidden mb-4 shadow-lg group-hover:shadow-2xl transition-all duration-300 transform group-hover:-translate-y-1">
+                            <img src="Imagenes/Andres.png" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="font-bold text-navy text-lg">Dr. Andres</h3>
+                        <p class="text-sm text-navy/60 font-medium">Médica Veterinaria</p>
+                    </div>
+                    <!-- Vet 2 -->
+                    <div
+                        class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all text-center group border border-transparent hover:border-accent/10">
+                        <div
+                            class="w-40 h-40 mx-auto rounded-[20px] overflow-hidden mb-4 shadow-lg group-hover:shadow-2xl transition-all duration-300 transform group-hover:-translate-y-1">
+                            <img src="Imagenes/Doctora Kathalina Carvajal.png" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="font-bold text-navy text-lg">Dra. Kathalina Carvajal</h3>
+                        <p class="text-sm text-navy/60 font-medium">Médica Veterinaria</p>
+                    </div>
+                    <!-- Vet 3 -->
+                    <div
+                        class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all text-center group border border-transparent hover:border-accent/10">
+                        <div
+                            class="w-40 h-40 mx-auto rounded-[20px] overflow-hidden mb-4 shadow-lg group-hover:shadow-2xl transition-all duration-300 transform group-hover:-translate-y-1">
+                            <img src="Imagenes/Paola Galindo.png" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="font-bold text-navy text-lg">Dra. Paola Galindo</h3>
+                        <p class="text-sm text-navy/60 font-medium">Médica Veterinaria</p>
+                    </div>
+                    <!-- Vet 4 -->
+                    <div
+                        class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all text-center group border border-transparent hover:border-accent/10">
+                        <div
+                            class="w-40 h-40 mx-auto rounded-[20px] overflow-hidden mb-4 shadow-lg group-hover:shadow-2xl transition-all duration-300 transform group-hover:-translate-y-1">
+                            <img src="Imagenes/Foto Paula Barreto.png" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="font-bold text-navy text-lg">Dra. Paula Barreto</h3>
+                        <p class="text-sm text-navy/60 font-medium">Médica Veterinaria</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 bg-white">
+            <div class="max-w-[1200px] mx-auto px-6">
+                <div class="mb-16 text-center max-w-2xl mx-auto space-y-4">
+                    <h2 class="text-4xl font-black text-navy tracking-tight">Cuidado Integral para tu Mascota</h2>
+                    <p class="text-navy/70 leading-relaxed">
+                        Servicios profesionales diseñados para brindarte tranquilidad y salud para ellos.
+                    </p>
+                </div>
+                <!-- Services Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <div
+                        class="group bg-[var(--bg-cream)]/20 rounded-2xl overflow-hidden border border-[var(--secondary-color)]/20 hover:shadow-xl transition-all duration-300">
+                        <div class="aspect-[4/3] bg-cover bg-center overflow-hidden"
+                            style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop');">
+                            <div class="w-full h-full bg-navy/0 group-hover:bg-navy/10 transition-colors duration-300">
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <div
+                                class="size-12 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6 text-accent group-hover:scale-110 transition-transform duration-300">
+                                <span class="material-symbols-outlined text-2xl">videocam</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-navy mb-3">Teleorientación 24/7</h3>
+                            <p class="text-navy/60 leading-relaxed text-sm">Resuelve dudas sobre la salud de tu mascota
+                                en cualquier momento con nuestros expertos en línea.</p>
+                        </div>
+                    </div>
+                    <!-- Service 2 -->
+                    <div
+                        class="group bg-[var(--bg-cream)]/20 rounded-2xl overflow-hidden border border-[var(--secondary-color)]/20 hover:shadow-xl transition-all duration-300">
+                        <div class="aspect-[4/3] bg-cover bg-center overflow-hidden"
+                            style="background-image: url('https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=800&auto=format&fit=crop');">
+                            <div class="w-full h-full bg-navy/0 group-hover:bg-navy/10 transition-colors duration-300">
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <div
+                                class="size-12 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6 text-accent group-hover:scale-110 transition-transform duration-300">
+                                <span class="material-symbols-outlined text-2xl">assignment</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-navy mb-3">Lecturas de exámenes</h3>
+                            <p class="text-navy/60 leading-relaxed text-sm">Interpretación profesional de resultados
+                                de laboratorio para entender el estado de salud de tu mascota.</p>
+                        </div>
+                    </div>
+                    <!-- Service 3 -->
+                    <div
+                        class="group bg-[var(--bg-cream)]/20 rounded-2xl overflow-hidden border border-[var(--secondary-color)]/20 hover:shadow-xl transition-all duration-300">
+                        <div class="aspect-[4/3] bg-cover bg-center overflow-hidden"
+                            style="background-image: url('https://images.unsplash.com/photo-1628009368231-76033527212e?q=80&w=800&auto=format&fit=crop');">
+                            <div class="w-full h-full bg-navy/0 group-hover:bg-navy/10 transition-colors duration-300">
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <div
+                                class="size-12 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6 text-accent group-hover:scale-110 transition-transform duration-300">
+                                <span class="material-symbols-outlined text-2xl">medical_services</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-navy mb-3">Consultas básicas</h3>
+                            <p class="text-navy/60 leading-relaxed text-sm">Atención veterinaria para chequeos de
+                                rutina y afecciones menores sin salir de casa.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Animal Gallery Section -->
+        <section class="py-20 bg-white border-t border-[var(--bg-cream)]">
+            <div class="max-w-[1200px] mx-auto px-6">
+                <h2 class="text-3xl font-black text-navy text-center mb-12">Lo que dicen nuestros clientes</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Review 1 -->
+                    <div
+                        class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                        <div class="flex items-center gap-1 text-yellow-400 mb-4">
+                            <span class="material-symbols-outlined text-sm fill-current">star</span>
+                            <span class="material-symbols-outlined text-sm fill-current">star</span>
+                            <span class="material-symbols-outlined text-sm fill-current">star</span>
+                            <span class="material-symbols-outlined text-sm fill-current">star</span>
+                            <span class="material-symbols-outlined text-sm fill-current">star</span>
+                        </div>
+                        <p class="text-navy/70 text-sm mb-6 leading-relaxed">"Excelente servicio, me ayudaron con mi
+                            gato a media noche. La doctora fue muy amable."</p>
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="size-10 rounded-full bg-accent/10 flex items-center justify-center text-accent font-bold">
+                                M</div>
+                            <div>
+                                <p class="text-sm font-bold text-navy">María Gonzalez</p>
+                                <p class="text-xs text-navy/40">Hace 2 días</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Review 2 -->
+                    <div
+                        class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                        <div class="flex items-center gap-1 text-yellow-400 mb-4">
+                            <span class="material-symbols-outlined text-sm fill-current">star</span>
+                            <span class="material-symbols-outlined text-sm fill-current">star</span>
+                            <span class="material-symbols-outlined text-sm fill-current">star</span>
+                            <span class="material-symbols-outlined text-sm fill-current">star</span>
+                            <span class="material-symbols-outlined text-sm fill-current">star</span>
+                        </div>
+                        <p class="text-navy/70 text-sm mb-6 leading-relaxed">"Muy profesional, me explicó todo con
+                            paciencia y me dio tranquilidad."</p>
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="size-10 rounded-full bg-accent/10 flex items-center justify-center text-accent font-bold">
+                                C</div>
+                            <div>
+                                <p class="text-sm font-bold text-navy">Carlos Rodriguez</p>
+                                <p class="text-xs text-navy/40">Hace 1 semana</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Review 3 -->
+                    <div
+                        class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                        <div class="flex items-center gap-1 text-yellow-400 mb-4">
+                            <span class="material-symbols-outlined text-sm fill-current">star</span>
+                            <span class="material-symbols-outlined text-sm fill-current">star</span>
+                            <span class="material-symbols-outlined text-sm fill-current">star</span>
+                            <span class="material-symbols-outlined text-sm fill-current">star</span>
+                            <span class="material-symbols-outlined text-sm fill-current">star</span>
+                        </div>
+                        <p class="text-navy/70 text-sm mb-6 leading-relaxed">"La mejor opción para no salir de casa.
+                            Totalmente recomendado."</p>
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="size-10 rounded-full bg-accent/10 flex items-center justify-center text-accent font-bold">
+                                L</div>
+                            <div>
+                                <p class="text-sm font-bold text-navy">Laura Perez</p>
+                                <p class="text-xs text-navy/40">Hace 3 semanas</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-[var(--bg-cream)]">
+            <div class="max-w-[1200px] mx-auto px-6 text-center">
+                <div
+                    class="max-w-3xl mx-auto space-y-8 bg-white p-12 rounded-3xl shadow-2xl border border-[var(--secondary-color)]/10">
+                    <h2 class="text-3xl font-black text-navy">¿Listo para darle lo mejor a tu mascota?</h2>
+                    <p class="text-lg text-navy/70">La consulta dura 24 horas y puedes hacer todas las preguntas que
+                        necesites.</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <input
+                            class="min-w-[300px] h-14 bg-[var(--bg-cream)]/30 border border-[var(--secondary-color)]/20 rounded-lg px-6 text-base font-medium focus:ring-2 focus:ring-accent/50 outline-none"
+                            placeholder="Tu correo electrónico" type="email" />
+                        <button
+                            class="bg-accent hover:bg-accent/90 text-white font-bold h-14 px-8 rounded-lg shadow-lg shadow-accent/20 transition-all">
+                            Empezar Ahora
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-white border-t border-[var(--secondary-color)]/20 py-8">
+        <div class="max-w-[1200px] mx-auto px-6 flex justify-center items-center">
+            <div class="flex items-center gap-2 opacity-50">
+                <img src="Imagenes/Vetty - Logo - fondo azul.png" alt="Vetty"
+                    class="h-8 md:h-10 w-auto object-contain grayscale">
+            </div>
+        </div>
+        <div class="max-w-[1200px] mx-auto px-6 mt-4 text-center text-xs text-navy/40 font-medium">
+            © 2024 Vetty. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <script>
+        // Data for Countries and Cities
+        const locationData = {
+            "Colombia": ["Bogotá", "Medellín", "Cali", "Barranquilla", "Cartagena"],
+            "México": ["Ciudad de México", "Guadalajara", "Monterrey", "Puebla", "Cancún"],
+            "Argentina": ["Buenos Aires", "Córdoba", "Rosario", "Mendoza", "La Plata"],
+            "Chile": ["Santiago", "Valparaíso", "Concepción", "La Serena", "Antofagasta"],
+            "Perú": ["Lima", "Arequipa", "Trujillo", "Chiclayo", "Cusco"],
+            "España": ["Madrid", "Barcelona", "Valencia", "Sevilla", "Bilbao"]
+        };
+
+        const countrySelect = document.getElementById('countrySelect');
+        const citySelect = document.getElementById('citySelect');
+
+        // Populate Countries
+        Object.keys(locationData).forEach(country => {
+            const option = document.createElement('option');
+            option.value = country;
+            option.textContent = country;
+            countrySelect.appendChild(option);
+        });
+
+        // Handle Country Change
+        countrySelect.addEventListener('change', function () {
+            const selectedCountry = this.value;
+            const cities = locationData[selectedCountry] || [];
+
+            // Reset and Enable City Select
+            citySelect.innerHTML = '<option value="" disabled selected>Seleccionar Ciudad</option>';
+            citySelect.disabled = false;
+
+            // Populate Cities
+            cities.forEach(city => {
+                const option = document.createElement('option');
+                option.value = city;
+                option.textContent = city;
+                citySelect.appendChild(option);
+            });
+        });
+
+        // Form Validation
+        const form = document.getElementById('consultationForm');
+        const phoneInput = form.querySelector('input[name="phone"]');
+        const phoneError = document.getElementById('phoneError');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            let isValid = true;
+
+            // Phone Validation (Simple Regex for demo)
+            const phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im; // Basic check
+            const phoneClean = phoneInput.value.replace(/\s/g, '');
+
+            if (phoneClean.length < 7 || !phoneRegex.test(phoneClean)) {
+                // Very basic length check + regex
+                phoneError.classList.remove('hidden');
+                phoneInput.classList.add('border-red-500');
+                isValid = false;
+            } else {
+                phoneError.classList.add('hidden');
+                phoneInput.classList.remove('border-red-500');
+            }
+
+            if (isValid) {
+                // Determine need type text
+                const needSelect = form.querySelector('select:last-of-type'); // Assuming structure
+                // Or select by checking options generally if id not present. 
+                // But I added new IDs. Wait, NeedType has no ID? 
+
+                alert('¡Formulario válido! Un especialista veterinario te contactará pronto.');
+                form.reset();
+            }
+        });
+    </script>
+</body>
+
+</html>
