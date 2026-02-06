@@ -2,6 +2,7 @@
 export default {
   content: [
     "./index.html",
+    "./thank-you.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   darkMode: "class",

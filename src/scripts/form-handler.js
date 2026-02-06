@@ -73,26 +73,15 @@ export function initFormHandlers() {
                 submitButton.innerHTML = '<span class="animate-spin inline-block">⏳</span> Enviando...';
                 submitButton.disabled = true;
 
-                const response = await fetch('https://altotrafico-iav1-n8n.tmdjra.easypanel.host/webhook/Vetty Landing', {
+                const response = await fetch('https://altotrafico-iav1-n8n.tmdjra.easypanel.host/webhook/Vetty%20Landing', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(formData)
                 });
 
-                if (response.ok || true) {
-                    const container = form.parentElement;
-                    container.innerHTML = `
-                        <div class="text-center py-10 animate-fade-in">
-                            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <span class="material-symbols-outlined text-green-500 text-4xl">check_circle</span>
-                            </div>
-                            <h3 class="text-2xl font-bold text-navy mb-3">¡Gracias por tu interés!</h3>
-                            <p class="text-navy/70 mb-6 text-base px-4">Nuestro equipo ha recibido tus datos y se pondrá en contacto contigo muy pronto para asesorarte.</p>
-                            <div class="bg-accent/5 p-4 rounded-xl inline-block">
-                                <p class="text-accent font-bold px-4 italic">Revisa tu WhatsApp en los próximos minutos.</p>
-                            </div>
-                        </div>
-                    `;
+                if (response.ok) {
+                    window.location.href = '/thank-you.html';
+                    return;
                 } else {
                     alert('Hubo un error. Por favor intenta de nuevo.');
                     submitButton.innerHTML = originalText;
@@ -100,17 +89,9 @@ export function initFormHandlers() {
                 }
             } catch (error) {
                 console.error('Error:', error);
-                const container = form.parentElement;
-                container.innerHTML = `
-                    <div class="text-center py-10">
-                        <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <span class="material-symbols-outlined text-green-500 text-4xl">check_circle</span>
-                        </div>
-                        <h3 class="text-2xl font-bold text-navy mb-3">¡Gracias por tu interés!</h3>
-                        <p class="text-navy/70 mb-6 text-base">Nuestro equipo ha recibido tus datos y se pondrá en contacto pronto.</p>
-                        <p class="text-accent font-bold italic">Revisa tu WhatsApp en breve.</p>
-                    </div>
-                `;
+                alert('Error de conexión. Por favor intenta de nuevo.');
+                submitButton.innerHTML = originalText;
+                submitButton.disabled = false;
             }
         }
     });
