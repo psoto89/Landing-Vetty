@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="robots" content="index, follow" />
     <title>Vetty - Consultas Veterinarias 24/7</title>
     <meta name="description"
         content="Consultas veterinarias 24/7 por WhatsApp desde $9.950. Atención inmediata con veterinarias certificadas para perros, gatos y más. Sin citas, sin esperas." />
@@ -50,6 +51,22 @@
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-PTT324TH');</script>
     <!-- End Google Tag Manager -->
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MedicalBusiness",
+      "name": "Vetty",
+      "description": "Consultas veterinarias 24/7 por WhatsApp desde $9.950.",
+      "url": "https://landing.vetty.vet/",
+      "telephone": "+573117113874",
+      "priceRange": "$9.950",
+      "openingHours": "Mo-Su 00:00-24:00",
+      "areaServed": ["Colombia", "México", "Argentina", "Chile"],
+      "sameAs": ["https://www.vetty.vet"],
+      "offers": {"@type": "Offer","price": "9950","priceCurrency": "COP"}
+    }
+    </script>
 </head>
 
 <body class="bg-[var(--bg-cream)] text-navy transition-colors duration-300 overflow-x-hidden">
@@ -111,26 +128,25 @@
                 </div>
                 <div class="flex items-center justify-center lg:justify-end w-full">
                     <div class="glass-panel p-5 md:p-8 rounded-2xl w-full max-w-md mx-auto lg:mx-0">
-                        <h3 id="formTitle" class="text-xl font-bold mb-1 text-navy">¿Quieres conocer cómo funciona
+                        <h2 id="formTitle" class="text-xl font-bold mb-1 text-navy">¿Quieres conocer cómo funciona
                             nuestro servicio?
-                        </h3>
+                        </h2>
                         <p id="formSubtitle" class="text-navy/60 mb-4 text-xs">Déjanos tus datos y te explicaremos todo
                             lo que necesitas
                             saber.</p>
 
                         <form class="space-y-3" id="consultationForm">
                             <div>
-                                <label
-                                    class="block text-[10px] font-bold uppercase tracking-wider text-navy/50 mb-0.5">Nombre
-                                    Completo <span class="text-red-500">*</span></label>
+                                <label for="fullNameInput"
+                                    class="block text-[10px] font-bold uppercase tracking-wider text-navy/50 mb-0.5">Nombre Completo <span class="text-red-500">*</span></label>
                                 <input required
                                     class="w-full bg-white/50 border border-primary/10 rounded-lg h-10 px-4 focus:ring-2 focus:ring-accent/50 outline-none text-sm font-medium transition-all"
-                                    placeholder="Juan Pérez" type="text" name="fullName" autocomplete="name" />
+                                    id="fullNameInput" placeholder="Juan Pérez" type="text" name="fullName" autocomplete="name" />
                             </div>
 
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                 <div>
-                                    <label
+                                    <label for="phoneInput"
                                         class="block text-[10px] font-bold uppercase tracking-wider text-navy/50 mb-0.5">Teléfono
                                         <span class="text-red-500">*</span></label>
                                     <div class="flex gap-2">
@@ -152,13 +168,13 @@
                                         </div>
                                         <input required
                                             class="flex-1 bg-white/50 border border-primary/10 rounded-lg h-10 px-3 focus:ring-2 focus:ring-accent/50 outline-none text-sm font-medium transition-all min-w-0"
-                                            placeholder="300..." type="tel" name="phone" autocomplete="tel-national" />
+                                            id="phoneInput" placeholder="300..." type="tel" name="phone" autocomplete="tel-national" />
                                     </div>
                                     <p class="hidden text-[10px] text-red-500 mt-0.5" id="phoneError">Número inválido
                                     </p>
                                 </div>
                                 <div>
-                                    <label
+                                    <label for="emailInput"
                                         class="block text-[10px] font-bold uppercase tracking-wider text-navy/50 mb-0.5">Email
                                         <span class="text-red-500">*</span></label>
                                     <input required
@@ -171,7 +187,7 @@
 
                             <div class="grid grid-cols-2 gap-3">
                                 <div>
-                                    <label
+                                    <label for="petTypeSelect"
                                         class="block text-[10px] font-bold uppercase tracking-wider text-navy/50 mb-0.5">Mascota
                                         <span class="text-red-500">*</span></label>
                                     <div class="relative">
@@ -191,7 +207,7 @@
                                 </div>
 
                                 <div>
-                                    <label
+                                    <label for="needTypeSelect"
                                         class="block text-[10px] font-bold uppercase tracking-wider text-navy/50 mb-0.5">Necesidad
                                         <span class="text-red-500">*</span></label>
                                     <div class="relative">
@@ -623,6 +639,7 @@
                         </a>
                         <a id="waCTA" href="https://wa.me/573117113874?text=Hola!%20Quiero%20iniciar%20una%20consulta%20inmediata%20con%20un%20asesor%20de%20ventas%20o%20veterinario."
                             target="_blank"
+                            rel="noopener noreferrer"
                             class="w-full sm:w-auto px-12 py-5 bg-white/10 text-white font-bold rounded-full border border-white/20 hover:bg-white/20 transition-all text-lg uppercase tracking-tight flex items-center justify-center gap-3">
                             WhatsApp Directo
                         </a>
@@ -648,15 +665,17 @@
     </main>
 
     <footer class="bg-white border-t border-[var(--secondary-color)]/20 py-8">
-        <div class="max-w-[1200px] mx-auto px-6 flex justify-center items-center">
-            <div class="flex items-center gap-2 opacity-50">
-                <img src="/Imagenes/Vetty - Logo - fondo azul.png" alt="Vetty"
-                    class="size-10 rounded-full object-cover grayscale"
-                    loading="lazy" decoding="async" width="40" height="40" />
+        <div class="max-w-[1200px] mx-auto px-6 flex flex-col items-center gap-4">
+            <div class="flex items-center gap-2">
+                <img src="/Imagenes/Vetty - Logo - fondo azul.png" alt="Vetty" class="size-10 rounded-full object-cover" loading="lazy" decoding="async" width="40" height="40" />
+                <span class="font-bold text-navy text-sm">Vetty</span>
             </div>
-        </div>
-        <div class="max-w-[1200px] mx-auto px-6 mt-4 text-center text-xs text-navy/40 font-medium">
-            © 2025 Vetty. Todos los derechos reservados.
+            <nav aria-label="Footer" class="flex flex-wrap justify-center gap-6 text-xs text-navy/60 font-medium">
+                <a href="https://www.vetty.vet/terms-and-conditions" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">Términos y Condiciones</a>
+                <a href="https://www.vetty.vet/privacy-policy" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">Política de Privacidad</a>
+                <a href="https://wa.me/573117113874" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">Contacto WhatsApp</a>
+            </nav>
+            <p class="text-xs text-navy/40 font-medium text-center">© 2026 Vetty. Todos los derechos reservados.</p>
         </div>
     </footer>
 
@@ -682,6 +701,37 @@
 
     <!-- Modular Script Entry Point -->
     <script type="module" src="/src/main.js"></script>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookieBanner" class="fixed bottom-0 left-0 right-0 z-[200] bg-navy text-white px-6 py-4 shadow-2xl" style="transform:translateY(100%);transition:transform 0.5s ease;" role="dialog" aria-label="Consentimiento de cookies" aria-live="polite">
+        <div class="max-w-[1200px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p class="text-sm text-white/90 text-center sm:text-left">
+                Usamos cookies y herramientas de análisis para mejorar tu experiencia.
+                <a href="https://www.vetty.vet/terms-and-conditions" target="_blank" rel="noopener noreferrer" class="underline font-bold hover:text-accent transition-colors">Ver política</a>
+            </p>
+            <div class="flex gap-3 shrink-0">
+                <button id="cookieReject" class="px-4 py-2 text-xs font-bold text-white/70 hover:text-white border border-white/30 rounded-full transition-colors">Solo necesarias</button>
+                <button id="cookieAccept" class="px-6 py-2 text-xs font-bold bg-accent text-white rounded-full hover:bg-accent/90 transition-colors">Aceptar todas</button>
+            </div>
+        </div>
+    </div>
+    <script>
+    (function(){
+        if(!localStorage.getItem('vetty_cookie_consent')){
+            setTimeout(function(){
+                var b=document.getElementById('cookieBanner');
+                if(b) b.style.transform='translateY(0)';
+            },1200);
+        }
+        function hide(){var b=document.getElementById('cookieBanner');if(b) b.style.transform='translateY(100%)';}
+        document.addEventListener('DOMContentLoaded',function(){
+            var a=document.getElementById('cookieAccept');
+            var r=document.getElementById('cookieReject');
+            if(a) a.addEventListener('click',function(){localStorage.setItem('vetty_cookie_consent','all');hide();});
+            if(r) r.addEventListener('click',function(){localStorage.setItem('vetty_cookie_consent','necessary');hide();});
+        });
+    })();
+    </script>
 </body>
 
 </html>
