@@ -70,12 +70,13 @@
 </head>
 
 <body class="bg-[var(--bg-cream)] text-navy transition-colors duration-300 overflow-x-hidden">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-accent focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:outline-none">Saltar al contenido</a>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PTT324TH" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <main class="overflow-x-hidden w-full">
+    <main id="main-content" class="overflow-x-hidden w-full">
         <section id="hero-section" class="relative min-h-[650px] flex items-center bg-gray-900 overflow-hidden">
             <div class="absolute inset-0 w-full h-full overflow-hidden">
                 <!-- Background Image — LCP optimizado -->
@@ -134,7 +135,7 @@
                             lo que necesitas
                             saber.</p>
 
-                        <form class="space-y-3" id="consultationForm">
+                        <form class="space-y-3" id="consultationForm" method="post">
                             <div>
                                 <label for="fullNameInput"
                                     class="block text-[10px] font-bold uppercase tracking-wider text-navy/50 mb-0.5">Nombre Completo <span class="text-red-500">*</span></label>
@@ -151,6 +152,7 @@
                                     <div class="flex gap-2">
                                         <div class="relative w-[75px] shrink-0">
                                             <select id="phonePrefix"
+                                                aria-label="Código de país"
                                                 class="w-full bg-white/50 border border-primary/10 rounded-lg h-10 pl-2 pr-6 focus:ring-2 focus:ring-accent/50 outline-none text-[11px] font-medium appearance-none transition-all">
                                                 <option value="+57">🇨🇴 +57</option>
                                                 <option value="+52">🇲🇽 +52</option>
