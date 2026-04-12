@@ -1,5 +1,8 @@
 import { getUTMs } from './utm-helper.js';
 
+const WEBHOOK_URL = 'https://app.altotrafico.co/api/webhook/c/849f637e-78a3-4d9f-a741-6f815184fe30';
+const WHATSAPP_FALLBACK = 'https://wa.me/573117113874';
+
 export function initFormHandlers() {
     const form = document.getElementById('consultationForm');
     if (!form) return;
@@ -14,11 +17,11 @@ export function initFormHandlers() {
 
         let isValid = true;
 
-        // Cleanup previous errors
+        // Limpiar errores previos
         form.querySelectorAll('input, select').forEach(el => el.classList.remove('border-red-500'));
         [phoneError, emailError].forEach(el => el.classList.add('hidden'));
 
-        // Phone Validation
+        // Validar teléfono
         const phoneClean = phoneInput.value.replace(/\s/g, '');
         if (phoneClean.length < 7) {
             phoneError.classList.remove('hidden');
@@ -26,7 +29,7 @@ export function initFormHandlers() {
             isValid = false;
         }
 
-        // Email Validation (Regex)
+        // Validar email
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(emailInput.value)) {
             emailError.classList.remove('hidden');
@@ -34,65 +37,96 @@ export function initFormHandlers() {
             isValid = false;
         }
 
-        // Checkbox Validation
+        // Validar checkbox de términos
         const termsCheckbox = document.getElementById('terms');
         if (termsCheckbox && !termsCheckbox.checked) {
             isValid = false;
             alert('Debes aceptar los Términos y Condiciones para continuar.');
         }
 
-        // Selects Validation
+        // Validar selects
         const petTypeSelect = document.getElementById('petTypeSelect');
         const needTypeSelect = document.getElementById('needTypeSelect');
         const petType = petTypeSelect?.value;
-        const needType = needTypeSelect?.value;
+        const need = needTypeSelect?.value;
 
-        if (!petType || !needType) {
+        if (!petType || !need) {
             isValid = false;
             if (!petType && petTypeSelect) petTypeSelect.classList.add('border-red-500');
-            if (!needType && needTypeSelect) needTypeSelect.classList.add('border-red-500');
+            if (!need && needTypeSelect) needTypeSelect.classList.add('border-red-500');
         }
 
-        if (isValid) {
-            const prefix = document.getElementById('phonePrefix').value;
-            const formData = {
-                fullName: form.querySelector('input[name="fullName"]').value,
-                phone: `${prefix} ${phoneClean}`,
-                email: emailInput.value,
-                petType: petType,
-                needType: needType,
-                termsAccepted: true,
-                utms: getUTMs(),
-                timestamp: new Date().toISOString(),
-                source: 'Vetty Landing Page'
-            };
+        if (!isValid) return;
 
-            try {
-                const submitButton = form.querySelector('button[type="submit"]');
-                const originalText = submitButton.innerHTML;
-                submitButton.innerHTML = '<span class="animate-spin inline-block">⏳</span> Enviando...';
-                submitButton.disabled = true;
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalHTML = submitButton.innerHTML;
+        submitButton.innerHTML = '⏳ Enviando...';
+        submitButton.disabled = true;
 
-                const response = await fetch('https://altotrafico-iav1-n8n.tmdjra.easypanel.host/webhook/Vetty%20Landing', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData)
-                });
+        const prefix = document.getElementById('phonePrefix').value;
+        const utms = getUTMs();
 
-                if (response.ok) {
-                    window.location.href = '/thank-you.html';
-                    return;
-                } else {
-                    alert('Hubo un error. Por favor intenta de nuevo.');
-                    submitButton.innerHTML = originalText;
-                    submitButton.disabled = false;
+        const payload = {
+            fullName: form.querySelector('input[name="fullName"]').value.trim(),
+            phone: `${prefix}${phoneClean}`,
+            email: emailInput.value.trim(),
+            petType,
+            need,
+            terms: true,
+            utm_source: utms.source || 'direct',
+            utm_medium: utms.medium || '',
+            utm_campaign: utms.campaign || '',
+            utm_content: utms.content || '',
+            utm_term: utms.term || '',
+            page_url: window.location.href,
+            timestamp: new Date().toISOString()
+        };
+
+        try {
+            const response = await fetch(WEBHOOK_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (response.ok) {
+                // Disparar pixels solo en éxito
+                if (typeof fbq === 'function') {
+                    fbq('track', 'Lead');
                 }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Error de conexión. Por favor intenta de nuevo.');
-                submitButton.innerHTML = originalText;
+                if (typeof gtag === 'function') {
+                    gtag('event', 'generate_lead');
+                }
+
+                // Mostrar mensaje de éxito inline
+                _showSuccess();
+            } else {
+                _showError();
+                submitButton.innerHTML = originalHTML;
                 submitButton.disabled = false;
             }
+        } catch (error) {
+            console.error('[form-handler] Error al enviar formulario:', error);
+            _showError();
+            submitButton.innerHTML = originalHTML;
+            submitButton.disabled = false;
         }
     });
+}
+
+function _showSuccess() {
+    const formEl = document.getElementById('consultationForm');
+    const titleEl = document.getElementById('formTitle');
+    const subtitleEl = document.getElementById('formSubtitle');
+    const successEl = document.getElementById('formSuccess');
+
+    if (formEl) formEl.classList.add('hidden');
+    if (titleEl) titleEl.classList.add('hidden');
+    if (subtitleEl) subtitleEl.classList.add('hidden');
+    if (successEl) successEl.classList.remove('hidden');
+}
+
+function _showError() {
+    const errorEl = document.getElementById('formError');
+    if (errorEl) errorEl.classList.remove('hidden');
 }

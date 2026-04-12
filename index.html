@@ -8,17 +8,37 @@
     <meta name="description"
         content="Consultas veterinarias 24/7 por WhatsApp desde $9.950. Atención inmediata con veterinarias certificadas para perros, gatos y más. Sin citas, sin esperas." />
 
+    <!-- Canonical -->
+    <link rel="canonical" href="https://landing.vetty.vet/" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Consultas Veterinarias 24/7 por $9.950 | Vetty" />
+    <meta property="og:description" content="Habla con un veterinario ahora por WhatsApp. Sin citas, sin esperas. Atención inmediata para tu mascota desde casa." />
+    <meta property="og:image" content="https://landing.vetty.vet/Imagenes/hero-background.jpg" />
+    <meta property="og:url" content="https://landing.vetty.vet/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_CO" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Consultas Veterinarias 24/7 por $9.950 | Vetty" />
+    <meta name="twitter:description" content="Veterinarios expertos disponibles 24/7 vía WhatsApp. Atención inmediata sin salir de casa." />
+    <meta name="twitter:image" content="https://landing.vetty.vet/Imagenes/hero-background.jpg" />
+
+    <!-- Preconnect para recursos críticos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://connect.facebook.net" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+    <link rel="preconnect" href="https://capi-automation.s3.us-east-2.amazonaws.com" crossorigin />
+    <link rel="dns-prefetch" href="https://tracker.metricool.com" />
+    <link rel="dns-prefetch" href="https://www.clarity.ms" />
+
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"
         rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap"
         rel="stylesheet" />
 
     <link rel="icon" type="image/png" href="/Imagenes/Vetty - Logo - fondo azul.png" />
-
-    <!-- Preconnect for faster font loading -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <!-- Google Tag Manager -->
     <script>(function (w, d, s, l, i) {
@@ -41,9 +61,14 @@
     <main class="overflow-x-hidden w-full">
         <section id="hero-section" class="relative min-h-[650px] flex items-center bg-gray-900 overflow-hidden">
             <div class="absolute inset-0 w-full h-full overflow-hidden">
-                <!-- Background Image -->
-                <img src="/Imagenes/hero-background.jpg" alt="Vetty - Consulta veterinaria"
-                    class="absolute top-0 left-0 w-full h-full object-cover">
+                <!-- Background Image — LCP optimizado -->
+                <picture>
+                    <source srcset="/Imagenes/hero-background.webp" type="image/webp" />
+                    <img src="/Imagenes/hero-background.jpg" alt="Vetty - Consulta veterinaria"
+                        class="absolute top-0 left-0 w-full h-full object-cover"
+                        fetchpriority="high" loading="eager" decoding="async"
+                        width="1440" height="600" />
+                </picture>
 
                 <!-- Overlay for text readability -->
                 <div class="absolute inset-0 bg-navy/40"></div>
@@ -80,7 +105,8 @@
                     </ul>
                     <div class="py-4 hidden lg:block">
                         <img src="/Imagenes/Vetty - Logo - fondo azul.png" alt="Vetty"
-                            class="size-24 rounded-full object-cover border-4 border-white/50 shadow-xl bg-white">
+                            class="size-24 rounded-full object-cover border-4 border-white/50 shadow-xl bg-white"
+                            loading="lazy" decoding="async" width="96" height="96" />
                     </div>
                 </div>
                 <div class="flex items-center justify-center lg:justify-end w-full">
@@ -99,7 +125,7 @@
                                     Completo <span class="text-red-500">*</span></label>
                                 <input required
                                     class="w-full bg-white/50 border border-primary/10 rounded-lg h-10 px-4 focus:ring-2 focus:ring-accent/50 outline-none text-sm font-medium transition-all"
-                                    placeholder="Juan Pérez" type="text" name="fullName" />
+                                    placeholder="Juan Pérez" type="text" name="fullName" autocomplete="name" />
                             </div>
 
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -126,7 +152,7 @@
                                         </div>
                                         <input required
                                             class="flex-1 bg-white/50 border border-primary/10 rounded-lg h-10 px-3 focus:ring-2 focus:ring-accent/50 outline-none text-sm font-medium transition-all min-w-0"
-                                            placeholder="300..." type="tel" name="phone" />
+                                            placeholder="300..." type="tel" name="phone" autocomplete="tel-national" />
                                     </div>
                                     <p class="hidden text-[10px] text-red-500 mt-0.5" id="phoneError">Número inválido
                                     </p>
@@ -137,7 +163,7 @@
                                         <span class="text-red-500">*</span></label>
                                     <input required
                                         class="w-full bg-white/50 border border-primary/10 rounded-lg h-10 px-4 focus:ring-2 focus:ring-accent/50 outline-none text-sm font-medium transition-all"
-                                        placeholder="ejemplo@..." type="email" name="email" id="emailInput" />
+                                        placeholder="ejemplo@..." type="email" name="email" id="emailInput" autocomplete="email" />
                                     <p class="hidden text-[10px] text-red-500 mt-0.5" id="emailError">Email inválido
                                     </p>
                                 </div>
@@ -172,10 +198,10 @@
                                         <select required id="needTypeSelect"
                                             class="w-full bg-white/50 border border-primary/10 rounded-lg h-10 pl-3 pr-8 focus:ring-2 focus:ring-accent/50 outline-none text-xs font-medium appearance-none transition-all">
                                             <option value="" disabled selected>Seleccionar</option>
-                                            <option value="conocer_servicio">Servicio</option>
-                                            <option value="precios">Precios</option>
-                                            <option value="como_funciona">Uso</option>
-                                            <option value="otra">Otra</option>
+                                            <option value="conocer_servicio">¿Cómo funciona el servicio?</option>
+                                            <option value="precios">Consulta de precios</option>
+                                            <option value="como_funciona">Quiero agendar una consulta</option>
+                                            <option value="otra">Otra consulta</option>
                                         </select>
                                         <span
                                             class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-navy/40 text-sm">expand_more</span>
@@ -205,9 +231,23 @@
                             </button>
                         </form>
 
+                        <!-- Mensaje de éxito (oculto hasta submit exitoso) -->
+                        <div id="formSuccess" class="hidden py-6 text-center">
+                            <span class="material-symbols-outlined text-4xl text-green-500 mb-3 block">check_circle</span>
+                            <p class="text-green-700 font-bold text-base">¡Listo! Te contactaremos en los próximos minutos.</p>
+                            <p class="text-navy/60 text-xs mt-2">Revisa tu WhatsApp, te escribiremos muy pronto.</p>
+                        </div>
+
+                        <!-- Mensaje de error (oculto hasta fallo de webhook) -->
+                        <div id="formError" class="hidden py-3 px-4 bg-red-50 rounded-lg border border-red-100 text-sm text-red-700 mt-2">
+                            Hubo un error. Por favor escríbenos directamente por
+                            <a href="https://wa.me/573117113874" target="_blank" rel="noopener noreferrer"
+                               class="font-bold underline">WhatsApp</a>.
+                        </div>
+
                         <!-- WhatsApp direct CTA -->
                         <div class="mt-4 pt-4 border-t border-navy/5">
-                            <a href="https://wa.me/573117113874?text=Hola!%20Quiero%20iniciar%20una%20consulta%20inmediata%20con%20un%20asesor%20de%20ventas%20o%20veterinario."
+                            <a id="waHeroForm" href="https://wa.me/573117113874?text=Hola!%20Quiero%20iniciar%20una%20consulta%20inmediata%20con%20un%20asesor%20de%20ventas%20o%20veterinario."
                                 target="_blank" rel="noopener noreferrer"
                                 class="w-full bg-[#25D366] text-white font-bold h-10 rounded-lg shadow-md shadow-[#25D366]/10 flex items-center justify-center gap-2 group btn-hover-glow transition-all">
                                 <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -259,7 +299,8 @@
                                 class="absolute inset-0 bg-accent rounded-[40%_60%_70%_30%/40%_50%_60%_50%] transform rotate-12 group-hover:rotate-6 transition-transform duration-300">
                             </div>
                             <img src="/Imagenes/Doctora Kathalina Carvajal.png" alt="Dra. Kathalina"
-                                class="relative z-10 w-full h-full object-cover object-top rounded-full shadow-inner custom-shadow">
+                                class="relative z-10 w-full h-full object-cover object-top rounded-full shadow-inner custom-shadow"
+                                loading="lazy" decoding="async" width="192" height="192" sizes="192px" />
                         </div>
                         <p class="text-white/70 text-sm mb-1">Doctora en Veterinaria</p>
                         <h3 class="font-bold text-white text-xl">Kathalina Carvajal</h3>
@@ -272,7 +313,8 @@
                                 class="absolute inset-0 bg-[#dcb0cb] rounded-[40%_60%_70%_30%/40%_50%_60%_50%] transform -rotate-12 group-hover:-rotate-6 transition-transform duration-300">
                             </div>
                             <img src="/Imagenes/Paola Galindo.png" alt="Dra. Paola"
-                                class="relative z-10 w-full h-full object-cover object-top rounded-full">
+                                class="relative z-10 w-full h-full object-cover object-top rounded-full"
+                                loading="lazy" decoding="async" width="192" height="192" sizes="192px" />
                         </div>
                         <p class="text-white/70 text-sm mb-1">Doctora en Veterinaria</p>
                         <h3 class="font-bold text-white text-xl">Paola Galindo</h3>
@@ -285,7 +327,8 @@
                                 class="absolute inset-0 bg-accent rounded-[40%_60%_70%_30%/40%_50%_60%_50%] transform rotate-6 group-hover:rotate-12 transition-transform duration-300">
                             </div>
                             <img src="/Imagenes/Foto Paula Barreto.png" alt="Dra. Paula"
-                                class="relative z-10 w-full h-full object-cover object-top rounded-full">
+                                class="relative z-10 w-full h-full object-cover object-top rounded-full"
+                                loading="lazy" decoding="async" width="192" height="192" sizes="192px" />
                         </div>
                         <p class="text-white/70 text-sm mb-1">Doctora en Veterinaria</p>
                         <h3 class="font-bold text-white text-xl">Paula Barreto</h3>
@@ -298,7 +341,8 @@
                                 class="absolute inset-0 bg-[#dcb0cb] rounded-[40%_60%_70%_30%/40%_50%_60%_50%] transform -rotate-6 group-hover:-rotate-12 transition-transform duration-300">
                             </div>
                             <img src="/Imagenes/Luz.png" alt="Dra. Luz"
-                                class="relative z-10 w-full h-full object-cover object-top rounded-full">
+                                class="relative z-10 w-full h-full object-cover object-top rounded-full"
+                                loading="lazy" decoding="async" width="192" height="192" sizes="192px" />
                         </div>
                         <p class="text-white/70 text-sm mb-1">Doctora en Veterinaria</p>
                         <h3 class="font-bold text-white text-xl">Luz Marina</h3>
@@ -403,7 +447,8 @@
                         <div class="absolute -top-6 left-8">
                             <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop&crop=face"
                                 alt="María González"
-                                class="w-16 h-16 rounded-full border-4 border-white shadow-lg object-cover">
+                                class="w-16 h-16 rounded-full border-4 border-white shadow-lg object-cover"
+                                loading="lazy" decoding="async" width="64" height="64" />
                         </div>
                         <div class="pt-8">
                             <div class="flex items-center gap-1 text-yellow-400 mb-4">
@@ -429,7 +474,8 @@
                         <div class="absolute -top-6 left-8">
                             <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
                                 alt="Carlos Rodríguez"
-                                class="w-16 h-16 rounded-full border-4 border-white shadow-lg object-cover">
+                                class="w-16 h-16 rounded-full border-4 border-white shadow-lg object-cover"
+                                loading="lazy" decoding="async" width="64" height="64" />
                         </div>
                         <div class="pt-8">
                             <div class="flex items-center gap-1 text-yellow-400 mb-4">
@@ -455,7 +501,8 @@
                         <div class="absolute -top-6 left-8">
                             <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop&crop=face"
                                 alt="Laura Pérez"
-                                class="w-16 h-16 rounded-full border-4 border-white shadow-lg object-cover">
+                                class="w-16 h-16 rounded-full border-4 border-white shadow-lg object-cover"
+                                loading="lazy" decoding="async" width="64" height="64" />
                         </div>
                         <div class="pt-8">
                             <div class="flex items-center gap-1 text-yellow-400 mb-4">
@@ -574,7 +621,7 @@
                             Agendar Consulta
                             <span class="material-symbols-outlined font-bold">arrow_forward</span>
                         </a>
-                        <a href="https://wa.me/573117113874?text=Hola!%20Quiero%20iniciar%20una%20consulta%20inmediata%20con%20un%20asesor%20de%20ventas%20o%20veterinario."
+                        <a id="waCTA" href="https://wa.me/573117113874?text=Hola!%20Quiero%20iniciar%20una%20consulta%20inmediata%20con%20un%20asesor%20de%20ventas%20o%20veterinario."
                             target="_blank"
                             class="w-full sm:w-auto px-12 py-5 bg-white/10 text-white font-bold rounded-full border border-white/20 hover:bg-white/20 transition-all text-lg uppercase tracking-tight flex items-center justify-center gap-3">
                             WhatsApp Directo
@@ -604,7 +651,8 @@
         <div class="max-w-[1200px] mx-auto px-6 flex justify-center items-center">
             <div class="flex items-center gap-2 opacity-50">
                 <img src="/Imagenes/Vetty - Logo - fondo azul.png" alt="Vetty"
-                    class="size-10 rounded-full object-cover grayscale">
+                    class="size-10 rounded-full object-cover grayscale"
+                    loading="lazy" decoding="async" width="40" height="40" />
             </div>
         </div>
         <div class="max-w-[1200px] mx-auto px-6 mt-4 text-center text-xs text-navy/40 font-medium">
@@ -614,7 +662,7 @@
 
     <!-- Floating WhatsApp CTA Button -->
     <div id="floatingCTA" class="fixed bottom-8 right-8 z-50 transition-all duration-500 transform">
-        <a href="https://wa.me/573117113874?text=Hola!%20Quiero%20iniciar%20una%20consulta%20inmediata%20con%20un%20asesor%20de%20ventas%20o%20veterinario."
+        <a id="waFloating" href="https://wa.me/573117113874?text=Hola!%20Quiero%20iniciar%20una%20consulta%20inmediata%20con%20un%20asesor%20de%20ventas%20o%20veterinario."
             target="_blank" rel="noopener noreferrer"
             class="bg-[#25D366] hover:bg-[#1ebe5b] text-white font-bold py-4 px-6 rounded-full shadow-2xl flex items-center gap-3 group transition-all hover:scale-105 active:scale-95">
             <span class="bg-white/20 p-2 rounded-full ring-4 ring-white/10 group-hover:ring-white/20 transition-all">

@@ -1,9 +1,11 @@
 import './styles/main.css';
 import { initFormHandlers } from './scripts/form-handler.js';
+import { initWhatsAppLinks } from './scripts/utm-helper.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize form modular logic
+    // Inicializar lógica del formulario
     initFormHandlers();
 
-    // Floating Button logic removed as it should always be visible now
+    // Inicializar botones de WhatsApp con URLs dinámicas + tracking
+    initWhatsAppLinks(['waHeroForm', 'waCTA', 'waFloating']);
 });
