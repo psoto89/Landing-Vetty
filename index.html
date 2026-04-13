@@ -30,6 +30,9 @@
     <link rel="dns-prefetch" href="https://tracker.metricool.com" />
     <link rel="dns-prefetch" href="https://www.clarity.ms" />
 
+        <!-- Hero Image Preload (LCP optimization) -->
+    <link rel="preload" href="/Imagenes/hero-background.webp" as="image" type="image/webp" fetchpriority="high" />
+
     <!-- Google Fonts -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <noscript><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet" /></noscript>
@@ -129,7 +132,7 @@
                         <h2 id="formTitle" class="text-xl font-bold mb-1 text-navy">¿Quieres conocer cómo funciona
                             nuestro servicio?
                         </h2>
-                        <p id="formSubtitle" class="text-navy/60 mb-4 text-xs">Déjanos tus datos y te explicaremos todo
+                        <p id="formSubtitle" class="text-navy/90 mb-4 text-xs">Déjanos tus datos y te explicaremos todo
                             lo que necesitas
                             saber.</p>
 
@@ -163,7 +166,7 @@
                                                 <option value="+507">🇵🇦 +507</option>
                                             </select>
                                             <span
-                                                class="material-symbols-outlined absolute right-1 top-1/2 -translate-y-1/2 pointer-events-none text-navy/40 text-xs">expand_more</span>
+                                                class="material-symbols-outlined absolute right-1 top-1/2 -translate-y-1/2 pointer-events-none text-navy/90 text-xs">expand_more</span>
                                         </div>
                                         <input required
                                             class="flex-1 bg-white/50 border border-primary/10 rounded-lg h-10 px-3 focus:ring-2 focus:ring-accent/50 outline-none text-sm font-medium transition-all min-w-0"
@@ -201,7 +204,7 @@
                                             <option value="otro">Otro</option>
                                         </select>
                                         <span
-                                            class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-navy/40 text-sm">expand_more</span>
+                                            class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-navy/90 text-sm">expand_more</span>
                                     </div>
                                 </div>
 
@@ -219,7 +222,7 @@
                                             <option value="otra">Otra consulta</option>
                                         </select>
                                         <span
-                                            class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-navy/40 text-sm">expand_more</span>
+                                            class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-navy/90 text-sm">expand_more</span>
                                     </div>
                                 </div>
                             </div>
@@ -230,7 +233,7 @@
                                         class="w-3.5 h-3.5 text-accent border-gray-300 rounded focus:ring-accent accent-accent cursor-pointer">
                                 </div>
                                 <div class="text-[10px] leading-4">
-                                    <label for="terms" class="text-navy/60 cursor-pointer">
+                                    <label for="terms" class="text-navy/90 cursor-pointer">
                                         Acepto <a href="https://www.vetty.vet/terms-and-conditions" target="_blank"
                                             class="text-accent font-bold hover:underline">Privacidad y Términos</a>
                                     </label>
@@ -238,7 +241,7 @@
                             </div>
 
                             <button
-                                class="w-full bg-accent text-white font-bold h-12 rounded-lg shadow-lg shadow-accent/20 flex items-center justify-center gap-2 group btn-hover-glow"
+                                class="w-full bg-[#c4492e] text-white font-bold h-12 rounded-lg shadow-lg shadow-accent/20 flex items-center justify-center gap-2 group btn-hover-glow"
                                 type="submit">
                                 Solicitar información
                                 <span
@@ -250,7 +253,7 @@
                         <div id="formSuccess" class="hidden py-6 text-center">
                             <span class="material-symbols-outlined text-4xl text-green-500 mb-3 block">check_circle</span>
                             <p class="text-green-700 font-bold text-base">¡Listo! Te contactaremos en los próximos minutos.</p>
-                            <p class="text-navy/60 text-xs mt-2">Revisa tu WhatsApp, te escribiremos muy pronto.</p>
+                            <p class="text-navy/90 text-xs mt-2">Revisa tu WhatsApp, te escribiremos muy pronto.</p>
                         </div>
 
                         <!-- Mensaje de error (oculto hasta fallo de webhook) -->
@@ -264,7 +267,7 @@
                         <div class="mt-4 pt-4 border-t border-navy/5">
                             <a id="waHeroForm" href="https://wa.me/573117113874?text=Hola!%20Quiero%20iniciar%20una%20consulta%20inmediata%20con%20un%20asesor%20de%20ventas%20o%20veterinario."
                                 target="_blank" rel="noopener noreferrer"
-                                class="w-full bg-[#25D366] text-white font-bold h-10 rounded-lg shadow-md shadow-[#25D366]/10 flex items-center justify-center gap-2 group btn-hover-glow transition-all">
+                                class="w-full bg-[#25D366] text-[#0a1a0a] font-bold h-10 rounded-lg shadow-md shadow-[#25D366]/10 flex items-center justify-center gap-2 group btn-hover-glow transition-all">
                                 <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
                                     <path
                                         d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
@@ -283,17 +286,17 @@
                 <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 text-center">
                     <div class="space-y-1">
                         <p class="text-3xl font-black text-navy">+5.000</p>
-                        <p class="text-sm font-bold text-navy/60 uppercase tracking-wide">Consultas Resueltas</p>
+                        <p class="text-sm font-bold text-navy/90 uppercase tracking-wide">Consultas Resueltas</p>
                     </div>
                     <div class="hidden md:block w-px h-12 bg-navy/10"></div>
                     <div class="space-y-1">
                         <p class="text-3xl font-black text-navy">+10</p>
-                        <p class="text-sm font-bold text-navy/60 uppercase tracking-wide">Especialistas Trabajando</p>
+                        <p class="text-sm font-bold text-navy/90 uppercase tracking-wide">Especialistas Trabajando</p>
                     </div>
                     <div class="hidden md:block w-px h-12 bg-navy/10"></div>
                     <div class="space-y-1">
                         <p class="text-3xl font-black text-navy">+800</p>
-                        <p class="text-sm font-bold text-navy/60 uppercase tracking-wide">Usuarios Satisfechos</p>
+                        <p class="text-sm font-bold text-navy/90 uppercase tracking-wide">Usuarios Satisfechos</p>
                     </div>
                 </div>
             </div>
@@ -302,7 +305,7 @@
         <!-- Team Section - Modern Design -->
         <section class="py-24 bg-navy">
             <div class="max-w-[1200px] mx-auto px-6">
-                <p class="text-accent font-bold tracking-widest uppercase text-xs text-center mb-2">Nuestro Equipo</p>
+                <p class="text-[#fde8e0] font-bold tracking-widest uppercase text-xs text-center mb-2">Nuestro Equipo</p>
                 <h2 class="text-4xl font-black text-white text-center mb-16">Nuestras Doctoras</h2>
 
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
@@ -317,7 +320,7 @@
                                 class="relative z-10 w-full h-full object-cover object-top rounded-full shadow-inner custom-shadow"
                                 loading="lazy" decoding="async" width="192" height="192" sizes="192px" />
                         </div>
-                        <p class="text-white/70 text-sm mb-1">Doctora en Veterinaria</p>
+                        <p class="text-white/95 text-sm mb-1">Doctora en Veterinaria</p>
                         <h3 class="font-bold text-white text-xl">Kathalina Carvajal</h3>
                     </div>
 
@@ -331,7 +334,7 @@
                                 class="relative z-10 w-full h-full object-cover object-top rounded-full"
                                 loading="lazy" decoding="async" width="192" height="192" sizes="192px" />
                         </div>
-                        <p class="text-white/70 text-sm mb-1">Doctora en Veterinaria</p>
+                        <p class="text-white/95 text-sm mb-1">Doctora en Veterinaria</p>
                         <h3 class="font-bold text-white text-xl">Paola Galindo</h3>
                     </div>
 
@@ -345,7 +348,7 @@
                                 class="relative z-10 w-full h-full object-cover object-top rounded-full"
                                 loading="lazy" decoding="async" width="192" height="192" sizes="192px" />
                         </div>
-                        <p class="text-white/70 text-sm mb-1">Doctora en Veterinaria</p>
+                        <p class="text-white/95 text-sm mb-1">Doctora en Veterinaria</p>
                         <h3 class="font-bold text-white text-xl">Paula Barreto</h3>
                     </div>
 
@@ -359,7 +362,7 @@
                                 class="relative z-10 w-full h-full object-cover object-top rounded-full"
                                 loading="lazy" decoding="async" width="192" height="192" sizes="192px" />
                         </div>
-                        <p class="text-white/70 text-sm mb-1">Doctora en Veterinaria</p>
+                        <p class="text-white/95 text-sm mb-1">Doctora en Veterinaria</p>
                         <h3 class="font-bold text-white text-xl">Luz Marina</h3>
                     </div>
                 </div>
@@ -380,7 +383,7 @@
                     <div
                         class="group bg-[var(--bg-cream)]/20 rounded-2xl overflow-hidden border border-[var(--secondary-color)]/20 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
                         <div class="aspect-[4/3] overflow-hidden relative">
-                            <img src="/Imagenes/Servicio-Teleorientacion.webp" alt="Teleorientaci�n veterinaria 24/7" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" width="400" height="300" />
+                            <img src="/Imagenes/Servicio-Teleorientacion.webp" alt="Teleorientación veterinaria 24/7" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" width="400" height="300" />
                             <div class="absolute inset-0 w-full h-full bg-navy/0 group-hover:bg-navy/10 transition-colors duration-300"></div>
                         </div>
                         <div class="p-8">
@@ -389,7 +392,7 @@
                                 <span class="material-symbols-outlined text-2xl">videocam</span>
                             </div>
                             <h3 class="text-xl font-bold text-navy mb-3">Teleorientación 24/7</h3>
-                            <p class="text-navy/60 leading-relaxed text-sm">Resuelve dudas sobre la salud de tu mascota
+                            <p class="text-navy/90 leading-relaxed text-sm">Resuelve dudas sobre la salud de tu mascota
                                 en cualquier momento con nuestros expertos en línea.</p>
                         </div>
                     </div>
@@ -397,7 +400,7 @@
                     <div
                         class="group bg-[var(--bg-cream)]/20 rounded-2xl overflow-hidden border border-[var(--secondary-color)]/20 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
                         <div class="aspect-[4/3] overflow-hidden relative">
-                            <img src="/Imagenes/Servicio-Examenes.webp" alt="Lectura de ex�menes veterinarios" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" width="400" height="300" />
+                            <img src="/Imagenes/Servicio-Examenes.webp" alt="Lectura de exámenes veterinarios" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" width="400" height="300" />
                             <div class="absolute inset-0 w-full h-full bg-navy/0 group-hover:bg-navy/10 transition-colors duration-300"></div>
                         </div>
                         <div class="p-8">
@@ -406,7 +409,7 @@
                                 <span class="material-symbols-outlined text-2xl">assignment</span>
                             </div>
                             <h3 class="text-xl font-bold text-navy mb-3">Lecturas de exámenes</h3>
-                            <p class="text-navy/60 leading-relaxed text-sm">Interpretación profesional de resultados
+                            <p class="text-navy/90 leading-relaxed text-sm">Interpretación profesional de resultados
                                 de laboratorio para entender el estado de salud de tu mascota.</p>
                         </div>
                     </div>
@@ -414,7 +417,7 @@
                     <div
                         class="group bg-[var(--bg-cream)]/20 rounded-2xl overflow-hidden border border-[var(--secondary-color)]/20 hover:shadow-xl transition-all duration-300">
                         <div class="aspect-[4/3] overflow-hidden relative">
-                            <img src="/Imagenes/Servicio-ConsultaBasica.webp" alt="Consultas veterinarias b�sicas" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" width="400" height="300" />
+                            <img src="/Imagenes/Servicio-ConsultaBasica.webp" alt="Consultas veterinarias básicas" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" width="400" height="300" />
                             <div class="absolute inset-0 w-full h-full bg-navy/0 group-hover:bg-navy/10 transition-colors duration-300"></div>
                         </div>
                         <div class="p-8">
@@ -423,7 +426,7 @@
                                 <span class="material-symbols-outlined text-2xl">medical_services</span>
                             </div>
                             <h3 class="text-xl font-bold text-navy mb-3">Consultas básicas</h3>
-                            <p class="text-navy/60 leading-relaxed text-sm">Atención veterinaria para chequeos de
+                            <p class="text-navy/90 leading-relaxed text-sm">Atención veterinaria para chequeos de
                                 rutina y afecciones menores sin salir de casa.</p>
                         </div>
                     </div>
@@ -435,11 +438,11 @@
         <section class="py-16 bg-white">
             <div class="max-w-[1200px] mx-auto px-6 text-center">
                 <a href="#hero-section"
-                    class="inline-flex items-center gap-3 bg-accent text-white font-black px-12 py-5 rounded-full shadow-2xl transition-all btn-hover-glow text-lg uppercase tracking-tight">
+                    class="inline-flex items-center gap-3 bg-[#c4492e] text-white font-black px-12 py-5 rounded-full shadow-2xl transition-all btn-hover-glow text-lg uppercase tracking-tight">
                     <span class="material-symbols-outlined font-bold">rocket_launch</span>
                     Quiero atención profesional ahora
                 </a>
-                <p class="mt-4 text-navy/40 text-xs font-bold uppercase tracking-widest leading-relaxed">Sin
+                <p class="mt-4 text-navy/90 text-xs font-bold uppercase tracking-widest leading-relaxed">Sin
                     suscripciones • Sin esperas • $9.950 por consulta</p>
             </div>
         </section>
@@ -447,9 +450,9 @@
         <!-- Testimonials Section - Prominent Design -->
         <section class="py-24 bg-gradient-to-b from-[#dcb0cb]/20 to-white">
             <div class="max-w-[1200px] mx-auto px-6">
-                <p class="text-accent font-bold tracking-widest uppercase text-xs text-center mb-2">Testimonios</p>
+                <p class="text-[#c4492e] font-bold tracking-widest uppercase text-xs text-center mb-2">Testimonios</p>
                 <h2 class="text-4xl font-black text-navy text-center mb-4">Lo que dicen nuestros clientes</h2>
-                <p class="text-navy/60 text-center mb-16 max-w-xl mx-auto">Miles de familias colombianas confían en
+                <p class="text-navy/90 text-center mb-16 max-w-xl mx-auto">Miles de familias colombianas confían en
                     Vetty para el cuidado de sus mascotas</p>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -475,7 +478,7 @@
                                 recomendado para cualquier emergencia."</p>
                             <div>
                                 <p class="font-bold text-navy text-lg">María González</p>
-                                <p class="text-accent text-sm">Bogotá, Colombia</p>
+                                <p class="text-[#c4492e] text-sm">Bogotá, Colombia</p>
                             </div>
                         </div>
                     </div>
@@ -502,7 +505,7 @@
                                 WhatsApp es súper práctico."</p>
                             <div>
                                 <p class="font-bold text-navy text-lg">Carlos Rodríguez</p>
-                                <p class="text-accent text-sm">Medellín, Colombia</p>
+                                <p class="text-[#c4492e] text-sm">Medellín, Colombia</p>
                             </div>
                         </div>
                     </div>
@@ -529,7 +532,7 @@
                                 usado 3 veces."</p>
                             <div>
                                 <p class="font-bold text-navy text-lg">Laura Pérez</p>
-                                <p class="text-accent text-sm">Cali, Colombia</p>
+                                <p class="text-[#c4492e] text-sm">Cali, Colombia</p>
                             </div>
                         </div>
                     </div>
@@ -602,7 +605,7 @@
                         <span class="material-symbols-outlined text-accent fill-current">bolt</span>
                         Todo en menos de 5 minutos
                     </p>
-                    <p class="text-white/70 mt-2 text-sm uppercase tracking-widest font-medium">Ya tienes un vet en tu
+                    <p class="text-white/95 mt-2 text-sm uppercase tracking-widest font-medium">Ya tienes un vet en tu
                         bolsillo</p>
                 </div>
             </div>
@@ -623,13 +626,13 @@
                     <h2 class="text-4xl md:text-6xl font-black text-white mb-8 leading-[1.05] tracking-tight">Cuida a
                         quien
                         más te quiere sin salir de casa</h2>
-                    <p class="text-xl text-white/70 mb-12 max-w-2xl mx-auto font-medium">No dejes para mañana lo que
+                    <p class="text-xl text-white/95 mb-12 max-w-2xl mx-auto font-medium">No dejes para mañana lo que
                         puedes
                         consultar hoy. Veterinarios expertos disponibles 24/7 en tu WhatsApp.</p>
 
                     <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
                         <a href="#hero-section"
-                            class="w-full sm:w-auto px-12 py-5 bg-accent text-white font-black rounded-full shadow-2xl btn-hover-glow text-lg uppercase tracking-tight flex items-center justify-center gap-3">
+                            class="w-full sm:w-auto px-12 py-5 bg-[#c4492e] text-white font-black rounded-full shadow-2xl btn-hover-glow text-lg uppercase tracking-tight flex items-center justify-center gap-3">
                             Agendar Consulta
                             <span class="material-symbols-outlined font-bold">arrow_forward</span>
                         </a>
@@ -666,12 +669,12 @@
                 <img src="/Imagenes/Vetty - Logo - fondo azul.png" alt="Vetty" class="size-10 rounded-full object-cover" loading="lazy" decoding="async" width="40" height="40" />
                 <span class="font-bold text-navy text-sm">Vetty</span>
             </div>
-            <nav aria-label="Footer" class="flex flex-wrap justify-center gap-6 text-xs text-navy/60 font-medium">
+            <nav aria-label="Footer" class="flex flex-wrap justify-center gap-6 text-xs text-navy/90 font-medium">
                 <a href="https://www.vetty.vet/terms-and-conditions" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">Términos y Condiciones</a>
                 <a href="https://www.vetty.vet/privacy-policy" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">Política de Privacidad</a>
                 <a href="https://wa.me/573117113874" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">Contacto WhatsApp</a>
             </nav>
-            <p class="text-xs text-navy/40 font-medium text-center">© 2026 Vetty. Todos los derechos reservados.</p>
+            <p class="text-xs text-navy/90 font-medium text-center">© 2026 Vetty. Todos los derechos reservados.</p>
                             <a href="https://www.instagram.com/vetty_co/" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors flex items-center gap-1" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>svg>Instagram</a>a>
                             <a href="https://www.facebook.com/profile.php?id=61571978190821" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors flex items-center gap-1" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>svg>Facebook</a>a>
         </div>
@@ -681,7 +684,7 @@
     <div id="floatingCTA" class="fixed bottom-8 right-8 z-50 transition-all duration-500 transform">
         <a id="waFloating" href="https://wa.me/573117113874?text=Hola!%20Quiero%20iniciar%20una%20consulta%20inmediata%20con%20un%20asesor%20de%20ventas%20o%20veterinario."
             target="_blank" rel="noopener noreferrer"
-            class="bg-[#25D366] hover:bg-[#1ebe5b] text-white font-bold py-4 px-6 rounded-full shadow-2xl flex items-center gap-3 group transition-all hover:scale-105 active:scale-95">
+            class="bg-[#25D366] hover:bg-[#1ebe5b] text-[#0a1a0a] font-bold py-4 px-6 rounded-full shadow-2xl flex items-center gap-3 group transition-all hover:scale-105 active:scale-95">
             <span class="bg-white/20 p-2 rounded-full ring-4 ring-white/10 group-hover:ring-white/20 transition-all">
                 <svg class="w-5 h-5 fill-current text-white" viewBox="0 0 24 24">
                     <path
@@ -708,7 +711,7 @@
                 <a href="https://www.vetty.vet/terms-and-conditions" target="_blank" rel="noopener noreferrer" class="underline font-bold hover:text-accent transition-colors">Ver política</a>
             </p>
             <div class="flex gap-3 shrink-0">
-                <button id="cookieReject" class="px-4 py-2 text-xs font-bold text-white/70 hover:text-white border border-white/30 rounded-full transition-colors">Solo necesarias</button>
+                <button id="cookieReject" class="px-4 py-2 text-xs font-bold text-white/95 hover:text-white border border-white/30 rounded-full transition-colors">Solo necesarias</button>
                 <button id="cookieAccept" class="px-6 py-2 text-xs font-bold bg-accent text-white rounded-full hover:bg-accent/90 transition-colors">Aceptar todas</button>
             </div>
         </div>
