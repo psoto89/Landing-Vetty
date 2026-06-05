@@ -481,7 +481,24 @@ footer{background:var(--p-dp);color:rgba(255,255,255,.55);padding:36px 0}
                 </div>
                 <span class="hfp-fld-e">Teléfono inválido (mín. 7 dígitos)</span>
               </div>
-              <div class="hfp-terms">
+              <div class="hfp-fld" id="hf-email">
+              <label for="hf-email-inp">Email *</label>
+              <input type="email" id="hf-email-inp" name="email" placeholder="tu@correo.com" required/>
+              <span class="hfp-fld-e">Email inválido</span>
+            </div>
+            <div class="hfp-fld" id="hf-pet">
+              <label for="hf-pet-type">Tipo de mascota *</label>
+              <select id="hf-pet-type" name="petType" required>
+                <option value="">Selecciona</option>
+                <option value="perro">Perro</option>
+                <option value="gato">Gato</option>
+                <option value="conejo">Conejo</option>
+                <option value="ave">Ave</option>
+                <option value="otra">Otra</option>
+              </select>
+              <span class="hfp-fld-e">Selecciona un tipo</span>
+            </div>
+            <div class="hfp-terms">
                 <input type="checkbox" id="hfp-trm" name="terms"/>
                 <label for="hfp-trm">Acepto los <a href="/privacidad" target="_blank">Términos</a> y la <a href="/privacidad" target="_blank">Política de Privacidad</a>.</label>
               </div>
