@@ -1013,7 +1013,7 @@ function initHFP(){
   frm.addEventListener('submit',async function(e){
     e.preventDefault();
     var ok=true;
-    var name=document.getElementById('hf-name'),ph=document.getElementById('hf-phone'),trm=document.getElementById('hfp-trm');
+    var name=document.getElementById('hf-name'),ph=document.getElementById('hf-phone'),trm=document.getElementById('hfp-trm'),email=document.getElementById('hf-email-inp'),pet=document.getElementById('hf-pet-type');
     var nOk=name.value.trim().length>0;setFldByEl(name,nOk,'err');if(!nOk)ok=false;
     var pOk=ph.value.replace(/\s/g,'').length>=7;setFldByEl(ph,pOk,'err');if(!pOk)ok=false;
     if(trm&&!trm.checked){alert('Debes aceptar los Términos para continuar.');ok=false;}
@@ -1021,7 +1021,7 @@ function initHFP(){
     var btn=document.getElementById('hfpBtn'),orig=btn.innerHTML;
     btn.innerHTML='⏳ Enviando…';btn.disabled=true;
     var u=utms(),pfx=document.getElementById('hf-pfx').value;
-    var payload={fullName:name.value.trim(),phone:pfx+ph.value.replace(/\s/g,''),lead_type:'b2c',form:'hero',utm_source:u.source||'direct',utm_medium:u.medium||'',utm_campaign:u.campaign||'',utm_content:u.content||'',utm_term:u.term||'',page_url:location.href,timestamp:new Date().toISOString()};
+    var payload={fullName:name.value.trim(),phone:pfx+ph.value.replace(/\s/g,''),email:email.value.trim(),petType:pet.value,lead_type:'b2c',form:'hero',utm_source:u.source||'direct',utm_medium:u.medium||'',utm_campaign:u.campaign||'',utm_content:u.content||'',utm_term:u.term||'',page_url:location.href,timestamp:new Date().toISOString()};
     try{
       var r=await fetch(WH,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
       if(r.ok){
