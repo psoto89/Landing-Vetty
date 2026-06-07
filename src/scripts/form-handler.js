@@ -1,6 +1,6 @@
 import { getUTMs } from './utm-helper.js';
 
-const WEBHOOK_URL = 'https://app.altotrafico.co/api/webhook/c/849f637e-78a3-4d9f-a741-6f815184fe30';
+const WEBHOOK_URL = 'https://crm.vetty.vet/api/webhooks/leads?token=bda5a4a27a5f42cb99e57f6b46045d610ce43442119a4af6960c2a331516817d';
 const WHATSAPP_FALLBACK = 'https://wa.me/573117113874';
 
 export function initFormHandlers() {
