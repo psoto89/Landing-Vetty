@@ -1,0 +1,21 @@
+# Dependencias
+node_modules/
+
+# Build output (Vercel lo regenera en cada deploy)
+dist/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Entornos
+.env
+.env.local
+.env.*.local
+
+# Vercel
+.vercel/
+
+# Sistema
+.DS_Store
+Thumbs.db
