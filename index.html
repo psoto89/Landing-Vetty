@@ -882,6 +882,8 @@ footer{background:var(--p-dp);color:rgba(255,255,255,.55);padding:36px 0}
 (function(){
 'use strict';
 var WH='https://crm.vetty.vet/api/webhooks/leads?token=bda5a4a27a5f42cb99e57f6b46045d610ce43442119a4af6960c2a331516817d';
+// Segundo webhook: espejo al at-saas (best-effort; el CRM es el que controla la UX)
+var AT_SAAS='https://app.altotrafico.co/api/webhook/c/849f637e-78a3-4d9f-a741-6f815184fe30';
 var WA='https://wa.me/573117113874';
 var CK='vetty_cookie_consent';
 var ERX=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -889,6 +891,9 @@ var ERX=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 // UTMs
 function utms(){var p=new URLSearchParams(location.search);return{source:p.get('utm_source')||'',medium:p.get('utm_medium')||'',campaign:p.get('utm_campaign')||'',content:p.get('utm_content')||'',term:p.get('utm_term')||''}}
 function waUrl(msg){var u=utms(),t=msg||'Hola! Quiero hablar con un veterinario ahora.';if(u.source||u.campaign){var pts=[u.source,u.medium,u.campaign].filter(Boolean);t+=' [Fuente: '+pts.join('/')+']';}return WA+'?text='+encodeURIComponent(t);}
+
+// Envío espejo al at-saas. No bloquea ni afecta la UX: si falla, el lead ya quedó en el CRM.
+function sendToAtSaas(payload){try{fetch(AT_SAAS,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),keepalive:true}).catch(function(){});}catch(e){}}
 
 // WA buttons
 function initWA(){
@@ -953,6 +958,7 @@ function initB2C(){
     var u=utms(),pfx=document.getElementById('bc-pfx').value;
     var payload={fullName:name.value.trim(),phone:pfx+ph.value.replace(/\s/g,''),email:email.value.trim(),petType:tipo.value,need:need.value,lead_type:'b2c',terms:true,utm_source:u.source||'direct',utm_medium:u.medium||'',utm_campaign:u.campaign||'',utm_content:u.content||'',utm_term:u.term||'',page_url:location.href,timestamp:new Date().toISOString()};
     try{
+      sendToAtSaas(payload);
       var r=await fetch(WH,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
       if(r.ok){
         try{if(typeof fbq==='function')fbq('track','Lead');if(typeof gtag==='function')gtag('event','generate_lead');}catch(ex){}
@@ -984,6 +990,7 @@ function initB2B(){
     var u=utms(),crg=document.getElementById('b-crg'),tel=document.getElementById('b-tel');
     var payload={lead_type:'b2b',empresa:emp.value.trim(),empleados:rng.value,nombre:nom.value.trim(),cargo:crg?crg.value:'',email:eml.value.trim(),telefono:tel?tel.value:'',utm_source:u.source||'direct',utm_medium:u.medium||'',utm_campaign:u.campaign||'',page_url:location.href,timestamp:new Date().toISOString()};
     try{
+      sendToAtSaas(payload);
       var r=await fetch(WH,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
       if(r.ok){
         try{if(typeof gtag==='function')gtag('event','generate_lead',{lead_type:'b2b'});}catch(ex){}
@@ -1023,6 +1030,7 @@ function initHFP(){
     var u=utms(),pfx=document.getElementById('hf-pfx').value;
     var payload={fullName:name.value.trim(),phone:pfx+ph.value.replace(/\s/g,''),email:email.value.trim(),petType:pet.value,lead_type:'b2c',form:'hero',utm_source:u.source||'direct',utm_medium:u.medium||'',utm_campaign:u.campaign||'',utm_content:u.content||'',utm_term:u.term||'',page_url:location.href,timestamp:new Date().toISOString()};
     try{
+      sendToAtSaas(payload);
       var r=await fetch(WH,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
       if(r.ok){
         try{if(typeof fbq==='function')fbq('track','Lead');if(typeof gtag==='function')gtag('event','generate_lead',{form:'hero'});}catch(ex){}
