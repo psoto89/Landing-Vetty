@@ -939,10 +939,13 @@ function vettyTrack(evt){
 // Si la URL actual no trae UTMs, se usan los del PRIMER toque guardados por
 // el pixel. Antes se perdía la atribución de quien volvía en directo.
 function utms(){var p=new URLSearchParams(location.search);function g(k){return p.get(k)||ATTR[k]||''}return{source:g('utm_source'),medium:g('utm_medium'),campaign:g('utm_campaign'),content:g('utm_content'),term:g('utm_term')}}
-// El [ref:] son los 8 primeros caracteres del visitor_id. El CRM lo extrae
+// El [ref:] son los primeros 18 caracteres del visitor_id, guiones incluidos
+// (16 dígitos hex de entropía; con 8 era adivinable por fuerza bruta).
+// Se conservan los guiones a propósito: el CRM compara contra visitor_id::text,
+// que los lleva, así que tiene que ser un prefijo literal. El CRM lo extrae
 // del primer mensaje y ata la conversación con las visitas previas: es lo
 // único que recupera la atribución de los leads que entran por WhatsApp.
-function waUrl(msg){var u=utms(),t=msg||'Hola! Quiero hablar con un veterinario ahora.';if(u.source||u.campaign){var pts=[u.source,u.medium,u.campaign].filter(Boolean);t+=' [Fuente: '+pts.join('/')+']';}if(VID)t+=' [ref:'+VID.slice(0,8)+']';return WA+'?text='+encodeURIComponent(t);}
+function waUrl(msg){var u=utms(),t=msg||'Hola! Quiero hablar con un veterinario ahora.';if(u.source||u.campaign){var pts=[u.source,u.medium,u.campaign].filter(Boolean);t+=' [Fuente: '+pts.join('/')+']';}if(VID)t+=' [ref:'+VID.slice(0,18)+']';return WA+'?text='+encodeURIComponent(t);}
 
 // Envío espejo al at-saas. No bloquea ni afecta la UX: si falla, el lead ya quedó en el CRM.
 function sendToAtSaas(payload){try{fetch(AT_SAAS,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),keepalive:true}).catch(function(){});}catch(e){}}
