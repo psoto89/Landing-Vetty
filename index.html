@@ -889,9 +889,60 @@ var WA='https://wa.me/573117113874';
 var CK='vetty_cookie_consent';
 var ERX=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+// ═══ Pixel first-party del CRM ═══════════════════════════════
+// Da geografía al mapa del CRM y repara la atribución: hasta ahora los
+// utm_source/medium/campaign llegaban vacíos en el 100% de los leads.
+var TRACK='https://crm.vetty.vet/api/track/visit';
+
+// visitor_id anónimo en NUESTRO localStorage: es first-party, sobrevive a
+// Safari/ITP y no es una cookie de terceros.
+var VID=(function(){try{
+  var v=localStorage.getItem('vetty_vid');
+  if(!v){
+    v=(window.crypto&&crypto.randomUUID)?crypto.randomUUID()
+      :'xxxxxxxx-xxxx-4xxx-8xxx-xxxxxxxxxxxx'.replace(/x/g,function(){return Math.floor(Math.random()*16).toString(16)});
+    localStorage.setItem('vetty_vid',v);
+  }
+  return v;
+}catch(e){return null}})();
+
+// Atribución de PRIMER toque: se guarda una vez y NO se sobrescribe. Si
+// alguien llega por una campaña y vuelve semanas después en directo, el
+// crédito sigue siendo de la campaña que lo trajo.
+var ATTR=(function(){try{
+  var p=new URLSearchParams(location.search), keys=['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','fbclid'], cur={};
+  keys.forEach(function(k){if(p.get(k))cur[k]=p.get(k)});
+  var saved={};
+  try{saved=JSON.parse(localStorage.getItem('vetty_attr')||'{}')}catch(e){}
+  if(Object.keys(cur).length&&!Object.keys(saved).length){
+    localStorage.setItem('vetty_attr',JSON.stringify(cur));
+    return cur;
+  }
+  return Object.keys(saved).length?saved:cur;
+}catch(e){return {}}})();
+
+function vettyTrack(evt){
+  if(!VID)return;
+  try{
+    var p=new URLSearchParams(location.search);
+    var body={visitor_id:VID,path:location.pathname,event:evt||'pageview',site:'landing.vetty.vet'};
+    if(document.referrer)body.referrer=document.referrer;
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','fbclid'].forEach(function(k){
+      var v=p.get(k)||ATTR[k]; if(v)body[k]=v;
+    });
+    // keepalive: el hit sobrevive aunque el usuario navegue de inmediato
+    fetch(TRACK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body),keepalive:true}).catch(function(){});
+  }catch(e){/* el tracking jamás debe romper la página */}
+}
+
 // UTMs
-function utms(){var p=new URLSearchParams(location.search);return{source:p.get('utm_source')||'',medium:p.get('utm_medium')||'',campaign:p.get('utm_campaign')||'',content:p.get('utm_content')||'',term:p.get('utm_term')||''}}
-function waUrl(msg){var u=utms(),t=msg||'Hola! Quiero hablar con un veterinario ahora.';if(u.source||u.campaign){var pts=[u.source,u.medium,u.campaign].filter(Boolean);t+=' [Fuente: '+pts.join('/')+']';}return WA+'?text='+encodeURIComponent(t);}
+// Si la URL actual no trae UTMs, se usan los del PRIMER toque guardados por
+// el pixel. Antes se perdía la atribución de quien volvía en directo.
+function utms(){var p=new URLSearchParams(location.search);function g(k){return p.get(k)||ATTR[k]||''}return{source:g('utm_source'),medium:g('utm_medium'),campaign:g('utm_campaign'),content:g('utm_content'),term:g('utm_term')}}
+// El [ref:] son los 8 primeros caracteres del visitor_id. El CRM lo extrae
+// del primer mensaje y ata la conversación con las visitas previas: es lo
+// único que recupera la atribución de los leads que entran por WhatsApp.
+function waUrl(msg){var u=utms(),t=msg||'Hola! Quiero hablar con un veterinario ahora.';if(u.source||u.campaign){var pts=[u.source,u.medium,u.campaign].filter(Boolean);t+=' [Fuente: '+pts.join('/')+']';}if(VID)t+=' [ref:'+VID.slice(0,8)+']';return WA+'?text='+encodeURIComponent(t);}
 
 // Envío espejo al at-saas. No bloquea ni afecta la UX: si falla, el lead ya quedó en el CRM.
 function sendToAtSaas(payload){try{fetch(AT_SAAS,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),keepalive:true}).catch(function(){});}catch(e){}}
@@ -957,7 +1008,7 @@ function initB2C(){
     var btn=document.getElementById('b2cBtn'),orig=btn.innerHTML;
     btn.innerHTML='⏳ Enviando…';btn.disabled=true;
     var u=utms(),pfx=document.getElementById('bc-pfx').value;
-    var payload={fullName:name.value.trim(),phone:pfx+ph.value.replace(/\s/g,''),email:email.value.trim(),petType:tipo.value,need:need.value,lead_type:'b2c',terms:true,utm_source:u.source||'direct',utm_medium:u.medium||'',utm_campaign:u.campaign||'',utm_content:u.content||'',utm_term:u.term||'',page_url:location.href,timestamp:new Date().toISOString()};
+    var payload={fullName:name.value.trim(),phone:pfx+ph.value.replace(/\s/g,''),email:email.value.trim(),petType:tipo.value,need:need.value,lead_type:'b2c',terms:true,utm_source:u.source||'direct',utm_medium:u.medium||'',utm_campaign:u.campaign||'',utm_content:u.content||'',utm_term:u.term||'',page_url:location.href,visitor_id:VID,timestamp:new Date().toISOString()};
     try{
       sendToAtSaas(payload);
       var r=await fetch(WH,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
@@ -989,7 +1040,7 @@ function initB2B(){
     var btn=document.getElementById('b2bBtn'),orig=btn.innerHTML;
     btn.innerHTML='⏳ Enviando…';btn.disabled=true;
     var u=utms(),crg=document.getElementById('b-crg'),tel=document.getElementById('b-tel');
-    var payload={lead_type:'b2b',empresa:emp.value.trim(),empleados:rng.value,nombre:nom.value.trim(),cargo:crg?crg.value:'',email:eml.value.trim(),telefono:tel?tel.value:'',utm_source:u.source||'direct',utm_medium:u.medium||'',utm_campaign:u.campaign||'',page_url:location.href,timestamp:new Date().toISOString()};
+    var payload={lead_type:'b2b',empresa:emp.value.trim(),empleados:rng.value,nombre:nom.value.trim(),cargo:crg?crg.value:'',email:eml.value.trim(),telefono:tel?tel.value:'',utm_source:u.source||'direct',utm_medium:u.medium||'',utm_campaign:u.campaign||'',page_url:location.href,visitor_id:VID,timestamp:new Date().toISOString()};
     try{
       sendToAtSaas(payload);
       var r=await fetch(WH,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
@@ -1029,7 +1080,7 @@ function initHFP(){
     var btn=document.getElementById('hfpBtn'),orig=btn.innerHTML;
     btn.innerHTML='⏳ Enviando…';btn.disabled=true;
     var u=utms(),pfx=document.getElementById('hf-pfx').value;
-    var payload={fullName:name.value.trim(),phone:pfx+ph.value.replace(/\s/g,''),email:email.value.trim(),petType:pet.value,lead_type:'b2c',form:'hero',utm_source:u.source||'direct',utm_medium:u.medium||'',utm_campaign:u.campaign||'',utm_content:u.content||'',utm_term:u.term||'',page_url:location.href,timestamp:new Date().toISOString()};
+    var payload={fullName:name.value.trim(),phone:pfx+ph.value.replace(/\s/g,''),email:email.value.trim(),petType:pet.value,lead_type:'b2c',form:'hero',utm_source:u.source||'direct',utm_medium:u.medium||'',utm_campaign:u.campaign||'',utm_content:u.content||'',utm_term:u.term||'',page_url:location.href,visitor_id:VID,timestamp:new Date().toISOString()};
     try{
       sendToAtSaas(payload);
       var r=await fetch(WH,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
@@ -1068,6 +1119,11 @@ function initFAQ(){
 
 document.addEventListener('DOMContentLoaded',function(){
   initHeader();initReveal();initWA();initHFP();initB2C();initB2B();initCookie();initFloatingWA();initFAQ();
+  // Pixel: visita + clics a WhatsApp (el salto al chat es la conversión real)
+  vettyTrack('pageview');
+  document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){
+    a.addEventListener('click',function(){vettyTrack('whatsapp_click')});
+  });
 });
 })();
 </script>
